@@ -1,3 +1,4 @@
+import 'package:betamsngu/Home_Views/HomeView.dart';
 import 'package:flutter/material.dart';
 
 class App extends StatelessWidget {
@@ -8,7 +9,13 @@ class App extends StatelessWidget {
     // TODO: implement build
 return MaterialApp(
 
-initialRoute: "",
+initialRoute: '/home',
+
+routes: {
+'/home' : (context)=> HomeView(),
+
+
+},
 
 
 );
