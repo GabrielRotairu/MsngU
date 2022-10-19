@@ -1,4 +1,7 @@
-import 'package:betamsngu/Home_Views/HomeView.dart';
+import 'package:betamsngu/src/Home_Views/HomeView.dart';
+import 'package:betamsngu/src/LogIn_Views/LogInView.dart';
+import 'package:betamsngu/src/LogIn_Views/RegisterView.dart';
+import 'package:betamsngu/src/LogIn_Views/SplashView.dart';
 import 'package:flutter/material.dart';
 
 class App extends StatelessWidget {
@@ -7,18 +10,14 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-return MaterialApp(
-
-initialRoute: '/home',
-
-routes: {
-'/home' : (context)=> HomeView(),
-
-
-},
-
-
-);
-
-
-  }}
+    return MaterialApp(
+      initialRoute: '/Splash',
+      routes: {
+        '/Home': (context) => HomeView(),
+        'LogIn': (context) => LogInView(),
+        'Register': (context) => RegisterView(),
+        'Splash': (context) => SplashView(),
+      },
+    );
+  }
+}

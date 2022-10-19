@@ -2,8 +2,13 @@ import 'package:betamsngu/src/Custom_Views/C_InputText.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-C_InputText input1= C_InputText();
-C_InputText input2= C_InputText();
+C_InputText input1 = C_InputText(
+  sTitulo: "Ususario",
+);
+C_InputText input2 = C_InputText(
+  sTitulo: "Password",
+  blIsPassword: true,
+);
 
 void btnlog(BuildContext context) async {
   print("--------------->" + input1.getText());
@@ -26,7 +31,7 @@ void btnlog(BuildContext context) async {
   print("USUARIO LOGEADO CORRECTAMENTE");
 }
 
-class RFloginView extends StatelessWidget {
+class LogInView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
