@@ -1,4 +1,5 @@
 import 'package:betamsngu/src/Home_Views/HomeView.dart';
+import 'package:betamsngu/src/Home_Views/onBoardingView.dart';
 import 'package:betamsngu/src/LogIn_Views/LogInView.dart';
 import 'package:betamsngu/src/LogIn_Views/RegisterView.dart';
 import 'package:betamsngu/src/LogIn_Views/SplashView.dart';
@@ -11,11 +12,12 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: implement build
     return MaterialApp(
-      initialRoute: '/Register',
+      initialRoute: '/Splash',
       routes: {
         '/Home': (context) => HomeView(),
         '/LogIn': (context) => LogInView(),
         '/Register': (context) => RegisterView(),
+        '/onBoarding': (context)=> onBoardingView(),
         '/Splash': (context) => SplashView(),
       },
     );
