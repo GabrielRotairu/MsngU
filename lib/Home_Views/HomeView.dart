@@ -16,11 +16,27 @@ class _HomeView extends State<HomeView> {
     return Scaffold(
       backgroundColor: Colors.lightBlueAccent.shade400,
       appBar: AppBar(
-        title: const Text('Msng U'),
+        title: Text('Msng U'),
         backgroundColor: Colors.lightBlueAccent.shade700,
       ),
       body: Center(
-
+        child: <Widget>[
+          Container(
+            color: Colors.lightBlueAccent.shade400,
+            alignment: Alignment.center,
+            child:  Text('Friends'),
+          ),
+          Container(
+            color: Colors.lightBlueAccent.shade400,
+            alignment: Alignment.center,
+            child:  Text('Msng U'),
+          ),
+          Container(
+            color:Colors.lightBlueAccent.shade400,
+            alignment: Alignment.center,
+            child:  Text('Chats'),
+          ),
+        ][currentPageIndex],
 
       ),
       bottomNavigationBar: NavigationBar(
@@ -30,11 +46,11 @@ class _HomeView extends State<HomeView> {
           });
         },
         selectedIndex: currentPageIndex,
-        destinations: const <Widget>[
+        destinations:  <Widget>[
           NavigationDestination(
-            selectedIcon: Icon(Icons.camera_alt),
-            icon: Icon(Icons.camera_alt_outlined),
-            label: 'Camera',
+            selectedIcon: Icon(Icons.person_rounded),
+            icon: Icon(Icons.person_outline),
+            label: 'Perfil',
           ),
           NavigationDestination(
             selectedIcon: Icon(Icons.add_circle),
