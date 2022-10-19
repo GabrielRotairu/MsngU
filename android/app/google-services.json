@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "806908407307",
+    "project_id": "msngu-1afad",
+    "storage_bucket": "msngu-1afad.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:806908407307:android:2a81edd2457c3c64d4610e",
+        "android_client_info": {
+          "package_name": "com.example.betamsngu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "806908407307-7iiknstbi3o7q3l1g5dta9so4ggsc0kq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9sWln-sFG3PHwiunRdmPVreJZ6DsWL2I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "806908407307-7iiknstbi3o7q3l1g5dta9so4ggsc0kq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
