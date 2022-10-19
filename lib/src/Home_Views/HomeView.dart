@@ -3,16 +3,15 @@ import 'package:flutter/material.dart';
 class HomeView extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
-return _HomeView();
+    return _HomeView();
   }
 }
 
 class _HomeView extends State<HomeView> {
   int currentPageIndex = 0;
+
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Scaffold(
       backgroundColor: Colors.lightBlueAccent.shade400,
       appBar: AppBar(
@@ -24,20 +23,19 @@ class _HomeView extends State<HomeView> {
           Container(
             color: Colors.lightBlueAccent.shade400,
             alignment: Alignment.center,
-            child:  Text('Friends'),
+            child: Text('Friends'),
           ),
           Container(
             color: Colors.lightBlueAccent.shade400,
             alignment: Alignment.center,
-            child:  Text('Msng U'),
+            child: Text('Msng U'),
           ),
           Container(
-            color:Colors.lightBlueAccent.shade400,
+            color: Colors.lightBlueAccent.shade400,
             alignment: Alignment.center,
-            child:  Text('Chats'),
+            child: Text('Chats'),
           ),
         ][currentPageIndex],
-
       ),
       bottomNavigationBar: NavigationBar(
         onDestinationSelected: (int index) {
@@ -46,7 +44,7 @@ class _HomeView extends State<HomeView> {
           });
         },
         selectedIndex: currentPageIndex,
-        destinations:  <Widget>[
+        destinations: const <Widget> [
           NavigationDestination(
             selectedIcon: Icon(Icons.person_rounded),
             icon: Icon(Icons.person_outline),

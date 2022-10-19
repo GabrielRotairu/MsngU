@@ -68,7 +68,7 @@ class RegisterView extends StatelessWidget {
               ),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.of(context).popAndPushNamed('/Login');
+                  Navigator.of(context).popAndPushNamed('/LogIn');
                 },
                 child: Text('Volver a Iniciar Sesión'),
               ),

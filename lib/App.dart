@@ -11,12 +11,12 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: implement build
     return MaterialApp(
-      initialRoute: '/Splash',
+      initialRoute: '/Register',
       routes: {
         '/Home': (context) => HomeView(),
-        'LogIn': (context) => LogInView(),
-        'Register': (context) => RegisterView(),
-        'Splash': (context) => SplashView(),
+        '/LogIn': (context) => LogInView(),
+        '/Register': (context) => RegisterView(),
+        '/Splash': (context) => SplashView(),
       },
     );
   }

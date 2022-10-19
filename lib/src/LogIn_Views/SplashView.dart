@@ -22,13 +22,11 @@ class _SplashView extends State<SplashView> {
   void isUserLogged() async {
     await Future.delayed(Duration(seconds: 5));
     if (FirebaseAuth.instance.currentUser == null) {
-      Navigator.of(context).popAndPushNamed("/Login");
+      Navigator.of(context).popAndPushNamed("/LogIn");
     } else {
       DataHolder().DescargarMiPerfil();
       if (await DataHolder().isMiPerfilDownloaded() == true) {
         Navigator.of(context).popAndPushNamed("/Home");
-      } else {
-        Navigator.of(context).popAndPushNamed("/LogIn");
       }
     }
   }
