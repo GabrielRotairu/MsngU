@@ -28,7 +28,7 @@ class _SplashView extends State<SplashView> {
       if (await DataHolder().isMiPerfilDownloaded() == true) {
         Navigator.of(context).popAndPushNamed("/Home");
       } else {
-        Navigator.of(context).popAndPushNamed("/onBoarding");
+        Navigator.of(context).popAndPushNamed("/LogIn");
       }
     }
   }
@@ -37,7 +37,9 @@ class _SplashView extends State<SplashView> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
+
         child: Text("Bienvenido  :)"),
+
       ),
     );
   }

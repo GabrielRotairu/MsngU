@@ -4,9 +4,10 @@ class C_InputText extends StatelessWidget {
   final String sTitulo;
   final bool blIsPassword;
   final Icon iIcon;
+  final int tLength;
   final TextEditingController myController = TextEditingController(text: "");
 
-  C_InputText({Key? key, this.sTitulo = "", this.blIsPassword=false, this.iIcon= const Icon(Icons.abc)})
+  C_InputText({Key? key, this.sTitulo = "", this.blIsPassword=false, this.iIcon= const Icon(Icons.abc),this.tLength=0})
       : super(key: key);
 
 
@@ -21,7 +22,7 @@ class C_InputText extends StatelessWidget {
       obscureText: blIsPassword,
       controller: myController,
       cursorColor: Colors.white,
-      maxLength: 20,
+      maxLength: tLength,
       decoration: InputDecoration(
         icon: iIcon,
         labelText: sTitulo,

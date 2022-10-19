@@ -31,14 +31,18 @@ class RegisterView extends StatelessWidget {
   Widget build(BuildContext context) {
     C_InputText input1 = C_InputText(
       sTitulo: "Ususario",
+      tLength: 50,
     );
     C_InputText input2 = C_InputText(
       sTitulo: "Password",
       blIsPassword: true,
+      tLength: 8,
     );
     C_InputText input3 = C_InputText(
       sTitulo: "Password",
       blIsPassword: true,
+      tLength: 8,
+
     );
     return Scaffold(
       appBar: AppBar(
