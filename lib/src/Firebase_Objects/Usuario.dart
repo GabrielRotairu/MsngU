@@ -16,7 +16,8 @@ class Usuario {
       this.email = "",
       this.friends = const [],
       this.rooms = const [],
-      this.UID = ""});
+      this.UID = ""
+      });
 
   factory Usuario.fromFirestore(
     DocumentSnapshot<Map<String, dynamic>> snapshot,
@@ -26,8 +27,7 @@ class Usuario {
     return Usuario(
       age: data?['age'],
       name: data?['name'],
-      friends:
-          data?['friends'] is Iterable ? List.from(data?['friends']) : null,
+      friends: data?['friends'] is Iterable ? List.from(data?['friends']) : null,
       rooms: data?['rooms'] is Iterable ? List.from(data?['rooms']) : null,
       UID: snapshot.id,
     );

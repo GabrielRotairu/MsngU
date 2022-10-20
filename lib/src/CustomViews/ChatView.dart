@@ -1,6 +1,5 @@
 import 'package:betamsngu/src/Custom_Objects/C_InputText.dart';
 import 'package:betamsngu/src/Firebase_Objects/ChatText.dart';
-import 'package:betamsngu/src/List_Items/ChatItem.dart';
 import 'package:betamsngu/src/List_Items/ChatTextItem.dart';
 import 'package:betamsngu/src/Singleton/DataHolder.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -16,9 +15,7 @@ class ChatView extends StatefulWidget {
 class _ChatView extends State<ChatView> {
   FirebaseFirestore db = FirebaseFirestore.instance;
   List<ChatText> chatTexts = [];
-  C_InputText inputMsg = C_InputText(
-    tLength: 20,
-  );
+  C_InputText inputMsg = C_InputText();
 
   @override
   void initState() {
@@ -37,7 +34,7 @@ class _ChatView extends State<ChatView> {
         fromFirestore: ChatText.fromFirestore,
         toFirestore: (ChatText text, _) => text.toFirestore());
     final docSnap = await docRef.snapshots().listen(
-          (event) {
+      (event) {
         setState(() {
           chatTexts.clear();
 
@@ -62,7 +59,6 @@ class _ChatView extends State<ChatView> {
         time: Timestamp.now(),
         author: DataHolder().usuario.UID);
     await docRef.add(texto.toFirestore());
-    //descargarTextos();
   }
 
   void ItemShortClick(int index) {}
@@ -77,33 +73,52 @@ class _ChatView extends State<ChatView> {
       ),
       body: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Container(
+            color: Colors.lightBlueAccent.shade200,
+            height: 650.0,
+            child: ListView.builder(
+              padding: const EdgeInsets.all(8),
+              itemCount: chatTexts.length,
+              itemBuilder: (BuildContext context, int index) {
+                return ChatTextItem(
+                  sTexto: chatTexts[index].text!,
+                  onShortClick: ItemShortClick,
+                  index: index,
+                );
+              },
+            ),
+          ),
+          SingleChildScrollView(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Container(
-                color: Colors.lightBlueAccent.shade200,
-                height: 525.0,
-                child: ListView.separated(
-                  padding: const EdgeInsets.all(8),
-                  itemCount: chatTexts.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return ChatTextItem(
-                      sTexto: chatTexts[index].text!,
-                      onShortClick: ItemShortClick,
-                      index: index,
-                    );
-                  },
-                  separatorBuilder: (BuildContext context, int index) {
-                    return const Divider();
-                  },
-                ),
-              ),
-              inputMsg,
-              ElevatedButton(
-                onPressed: SendBtnPressed,
-                child: Text('Enviar'),
+              Flexible(
+
+                  child: OutlinedButton(
+                      onPressed: () {},
+                      child: Icon(Icons.add),
+                  )),
+
+              Flexible(child: inputMsg),
+              Flexible(
+                child: OutlinedButton(
+                  onPressed: SendBtnPressed,
+                  child: Icon(Icons.send),
+
+
+                    ),
+                  ),
+                ]
+            ),
               ),
             ],
-          )),
+          ),
+
+
+
+      ),
     );
   }
 }
