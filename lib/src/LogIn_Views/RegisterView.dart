@@ -1,4 +1,4 @@
-import 'package:betamsngu/src/Custom_Views/C_InputText.dart';
+import 'package:betamsngu/src/Custom_Objects//C_InputText.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 

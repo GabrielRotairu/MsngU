@@ -1,3 +1,4 @@
+import 'package:betamsngu/src/CustomViews/ChatView.dart';
 import 'package:flutter/material.dart';
 
 class HomeView extends StatefulWidget {
@@ -24,18 +25,16 @@ class _HomeView extends State<HomeView> {
             color: Colors.lightBlueAccent.shade400,
             alignment: Alignment.center,
             child: Text('Friends'),
+
           ),
           Container(
             color: Colors.lightBlueAccent.shade400,
             alignment: Alignment.center,
             child: Text('Msng U'),
           ),
-          Container(
-            color: Colors.lightBlueAccent.shade400,
-            alignment: Alignment.center,
-            child: Text('Chats'),
-          ),
-        ][currentPageIndex],
+          ChatView(),
+        ]
+        [currentPageIndex],
       ),
       bottomNavigationBar: NavigationBar(
         onDestinationSelected: (int index) {
@@ -44,8 +43,9 @@ class _HomeView extends State<HomeView> {
           });
         },
         selectedIndex: currentPageIndex,
-        destinations: const <Widget> [
+        destinations:  <Widget>[
           NavigationDestination(
+
             selectedIcon: Icon(Icons.person_rounded),
             icon: Icon(Icons.person_outline),
             label: 'Perfil',
@@ -53,12 +53,14 @@ class _HomeView extends State<HomeView> {
           NavigationDestination(
             selectedIcon: Icon(Icons.add_circle),
             icon: Icon(Icons.add_circle_outline),
-            label: 'MSNGU',
+            label: 'MSNG U',
           ),
-          NavigationDestination(
+          NavigationDestination (
+            // Navigator.of(context).popAndPushNamed("/Chat"),
             selectedIcon: Icon(Icons.chat_bubble),
             icon: Icon(Icons.chat_bubble_outline),
             label: 'Chats',
+
           ),
         ],
       ),
