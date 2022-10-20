@@ -1,3 +1,4 @@
+import 'package:betamsngu/src/Firebase_Objects/Chat.dart';
 import 'package:betamsngu/src/Firebase_Objects/FB_Admin.dart';
 import 'package:betamsngu/src/Firebase_Objects/Usuario.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -8,6 +9,9 @@ class DataHolder {
 
   String sMensaje = "";
   Usuario usuario = Usuario();
+  Chat chat= Chat();
+  String sCOLLETCTIONS_CHATS_NAME = "Chats";
+  String sCOLLETCTIONS_CHAT_TEXTS_NAME = "Texts";
 
    DataHolder._internal() {
     //sMensaje="Lorem Ipsum ";
