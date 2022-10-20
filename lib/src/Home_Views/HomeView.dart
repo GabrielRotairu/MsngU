@@ -1,4 +1,5 @@
 import 'package:betamsngu/src/CustomViews/ChatView.dart';
+import 'package:betamsngu/src/Home_Views/ChatHome_View.dart';
 import 'package:flutter/material.dart';
 
 class HomeView extends StatefulWidget {
@@ -32,7 +33,7 @@ class _HomeView extends State<HomeView> {
             alignment: Alignment.center,
             child: Text('Msng U'),
           ),
-          ChatView(),
+          ChatHomeView(),
         ]
         [currentPageIndex],
       ),

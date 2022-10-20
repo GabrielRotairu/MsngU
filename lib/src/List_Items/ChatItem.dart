@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 class ChatItem extends StatelessWidget {
-  final String sTitulo;
+  final String sTexto;
   final Function(int Index) onShortClick;
   final int index;
 
   ChatItem({
     Key? key,
-    this.sTitulo = "Title",
+    this.sTexto = "Title",
     required this.onShortClick,
     required this.index,
   }) : super(key: key);
@@ -16,7 +16,7 @@ class ChatItem extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: implement build
     return ListTile(
-      title: Text(sTitulo),
+      title: Text(sTexto),
       subtitle: Text(':)'),
       leading: Icon(Icons.chat_bubble),
       onTap: () {
