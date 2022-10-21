@@ -15,14 +15,17 @@ class ChatItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return ListTile(
-      title: Text(sTexto),
-      subtitle: Text(':)'),
-      leading: Icon(Icons.chat_bubble),
-      onTap: () {
-        onShortClick(index);
-      },
-    );
+    return Container(
+        color: Colors.lightBlue.shade600,
+        child: ListTile(
+          title: Text(sTexto),
+          subtitle: Text(':)'),
+          leading: Icon(Icons.chat_bubble),
+          onTap: () {
+            onShortClick(index);
+          },
+          textColor: Colors.white,
+        ));
   }
 /*
 

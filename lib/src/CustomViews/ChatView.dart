@@ -59,6 +59,7 @@ class _ChatView extends State<ChatView> {
         time: Timestamp.now(),
         author: DataHolder().usuario.UID);
     await docRef.add(texto.toFirestore());
+    inputMsg.clear();
   }
 
   void ItemShortClick(int index) {}
@@ -73,44 +74,46 @@ class _ChatView extends State<ChatView> {
       ),
       body: SingleChildScrollView(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Container(
-              color: Colors.lightBlueAccent.shade200,
-              height: 650.0,
-              child: ListView.builder(
-                padding: const EdgeInsets.all(8),
-                itemCount: chatTexts.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return ChatTextItem(
-                    sTexto: chatTexts[index].text!,
-                    onShortClick: ItemShortClick,
-                    index: index,
-                  );
-                },
-              ),
-            ),
-            SingleChildScrollView(
-              child:
-                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                Flexible(
-                    child: OutlinedButton(
-                  onPressed: () {},
-                  child: Icon(Icons.add),
-                )),
-                Flexible(
-                  child: inputMsg,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(
+                color: Colors.lightBlueAccent.shade200,
+                height: 655,
+                child: ListView.builder(
+
+                  padding: EdgeInsets.all(15),
+                  itemCount: chatTexts.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return ChatTextItem(
+                      sTexto: chatTexts[index].text!,
+                      onShortClick: ItemShortClick,
+                      index: index,
+
+                    );
+                  },
                 ),
-                Flexible(
+              ),
+              Row(mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                Padding(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0)),
+                Flexible(child: inputMsg),
+                Container(
                   child: OutlinedButton(
+
                     onPressed: SendBtnPressed,
+
                     child: Icon(Icons.send),
+                    style: ButtonStyle(
+
+                        shape: MaterialStatePropertyAll(CircleBorder()),
+                        backgroundColor:
+                            MaterialStatePropertyAll(Colors.white)),
                   ),
                 ),
               ]),
-            ),
-          ],
-        ),
+            ]),
       ),
     );
   }
