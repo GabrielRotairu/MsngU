@@ -25,12 +25,15 @@ class C_InputText extends StatelessWidget {
       obscureText: blIsPassword,
       controller: myController,
       cursorColor: Colors.white,
+      //resizeToAvoidBottomInset:true,
+      scrollPadding:
+          EdgeInsets.all(MediaQuery.of(context).viewInsets.bottom + 10),
       decoration: InputDecoration(
         //icon: iIcon,
         labelText: sTitulo,
         labelStyle: TextStyle(color: Colors.black12),
-        enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.white),
+        border: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.red),
         ),
       ),
     );

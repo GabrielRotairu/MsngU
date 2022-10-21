@@ -71,53 +71,46 @@ class _ChatView extends State<ChatView> {
         title: Text(DataHolder().chat.userName!),
         backgroundColor: Colors.lightBlueAccent.shade700,
       ),
-      body: Center(
-          child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Container(
-            color: Colors.lightBlueAccent.shade200,
-            height: 650.0,
-            child: ListView.builder(
-              padding: const EdgeInsets.all(8),
-              itemCount: chatTexts.length,
-              itemBuilder: (BuildContext context, int index) {
-                return ChatTextItem(
-                  sTexto: chatTexts[index].text!,
-                  onShortClick: ItemShortClick,
-                  index: index,
-                );
-              },
-            ),
-          ),
-          SingleChildScrollView(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Flexible(
-
-                  child: OutlinedButton(
-                      onPressed: () {},
-                      child: Icon(Icons.add),
-                  )),
-
-              Flexible(child: inputMsg),
-              Flexible(
-                child: OutlinedButton(
-                  onPressed: SendBtnPressed,
-                  child: Icon(Icons.send),
-
-
-                    ),
-                  ),
-                ]
-            ),
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              color: Colors.lightBlueAccent.shade200,
+              height: 650.0,
+              child: ListView.builder(
+                padding: const EdgeInsets.all(8),
+                itemCount: chatTexts.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return ChatTextItem(
+                    sTexto: chatTexts[index].text!,
+                    onShortClick: ItemShortClick,
+                    index: index,
+                  );
+                },
               ),
-            ],
-          ),
-
-
-
+            ),
+            SingleChildScrollView(
+              child:
+                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                Flexible(
+                    child: OutlinedButton(
+                  onPressed: () {},
+                  child: Icon(Icons.add),
+                )),
+                Flexible(
+                  child: inputMsg,
+                ),
+                Flexible(
+                  child: OutlinedButton(
+                    onPressed: SendBtnPressed,
+                    child: Icon(Icons.send),
+                  ),
+                ),
+              ]),
+            ),
+          ],
+        ),
       ),
     );
   }
