@@ -79,8 +79,7 @@ class _ChatView extends State<ChatView> {
               Container(
                 color: Colors.lightBlueAccent.shade200,
                 height: 655,
-                child: ListView.builder(
-
+                child: ListView.separated(
                   padding: EdgeInsets.all(15),
                   itemCount: chatTexts.length,
                   itemBuilder: (BuildContext context, int index) {
@@ -88,25 +87,23 @@ class _ChatView extends State<ChatView> {
                       sTexto: chatTexts[index].text!,
                       onShortClick: ItemShortClick,
                       index: index,
-
                     );
+                  },
+                  separatorBuilder: (BuildContext context, int index) {
+                    return const Divider();
                   },
                 ),
               ),
-              Row(mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
+              Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                 Padding(
                     padding:
                         EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0)),
                 Flexible(child: inputMsg),
                 Container(
                   child: OutlinedButton(
-
                     onPressed: SendBtnPressed,
-
                     child: Icon(Icons.send),
                     style: ButtonStyle(
-
                         shape: MaterialStatePropertyAll(CircleBorder()),
                         backgroundColor:
                             MaterialStatePropertyAll(Colors.white)),

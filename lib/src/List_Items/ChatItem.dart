@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 
 class ChatItem extends StatelessWidget {
   final String sTexto;
+  final String sMensaje;
   final Function(int Index) onShortClick;
   final int index;
 
   ChatItem({
     Key? key,
     this.sTexto = "Title",
+    this.sMensaje="ultimo mensaje",
     required this.onShortClick,
     required this.index,
   }) : super(key: key);
@@ -19,7 +21,7 @@ class ChatItem extends StatelessWidget {
         color: Colors.lightBlue.shade600,
         child: ListTile(
           title: Text(sTexto),
-          subtitle: Text(':)'),
+          subtitle: Text(sMensaje),
           leading: Icon(Icons.chat_bubble),
           onTap: () {
             onShortClick(index);

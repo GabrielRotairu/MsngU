@@ -36,16 +36,8 @@ class ChatTextItem extends StatelessWidget {
       ],),
     );
   }
-/*
 
-            ListTile(
-      title: Text(sTexto),
-      subtitle: Text('Secondary text'),
-      leading: Icon(Icons.label),
-      onTap: () {
-        onShortClick(index);
-      },
-    );
- */
+
+
 
 }

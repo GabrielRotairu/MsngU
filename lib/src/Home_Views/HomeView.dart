@@ -18,6 +18,31 @@ class _HomeView extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+              child: Text('Drawer Header'),
+            ),
+            ListTile(
+              title: const Text('Editar Perfil'),
+              onTap: () {
+                Navigator.of(context).pushNamed('/onBoarding');
+              },
+            ),
+            ListTile(
+              title: Text('Cerrar Sesión'),
+              onTap: () {
+                Navigator.of(context).pushNamed('/LogIn');
+              },
+            ),
+          ],
+        ),
+      ),
       backgroundColor: Colors.lightBlueAccent.shade400,
       appBar: AppBar(
         title: Text('Msng U'),
@@ -57,7 +82,6 @@ class _HomeView extends State<HomeView> {
             selectedIcon: Icon(Icons.chat_bubble),
             icon: Icon(Icons.chat_bubble_outline),
             label: 'Chats',
-
           ),
         ],
       ),

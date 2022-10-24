@@ -58,6 +58,7 @@ class _ChatHomeView extends State<ChatHomeView> {
           itemBuilder: (BuildContext context, int index) {
             return ChatItem(
               sTexto: ChatList[index].userName!,
+              //sMensaje: chatTexts[index].text!,
               onShortClick: ItemShortClick,
               index: index,
             );
