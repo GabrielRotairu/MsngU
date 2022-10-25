@@ -5,11 +5,13 @@ class ChatItem extends StatelessWidget {
   final String sMensaje;
   final Function(int Index) onShortClick;
   final int index;
+  final String aImage;
 
   ChatItem({
     Key? key,
     this.sTexto = "Title",
-    this.sMensaje="ultimo mensaje",
+    this.sMensaje = "ultimo mensaje",
+    this.aImage = "",
     required this.onShortClick,
     required this.index,
   }) : super(key: key);
@@ -20,9 +22,11 @@ class ChatItem extends StatelessWidget {
     return Container(
         color: Colors.lightBlue.shade600,
         child: ListTile(
+          leading: Image(
+            image: AssetImage(aImage),
+          ),
           title: Text(sTexto),
           subtitle: Text(sMensaje),
-          leading: Icon(Icons.chat_bubble),
           onTap: () {
             onShortClick(index);
           },

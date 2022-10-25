@@ -16,12 +16,14 @@ class _ChatView extends State<ChatView> {
   FirebaseFirestore db = FirebaseFirestore.instance;
   List<ChatText> chatTexts = [];
   C_InputText inputMsg = C_InputText();
+  late bool _isButtonDisabled;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     descargarTextos();
+    _isButtonDisabled = false;
   }
 
   void descargarTextos() async {
@@ -67,8 +69,8 @@ class _ChatView extends State<ChatView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.lightBlueAccent.shade700,
       appBar: AppBar(
+        // leading: Image(image: AssetImage("assets/user.png")),
         title: Text(DataHolder().chat.userName!),
         backgroundColor: Colors.lightBlueAccent.shade700,
       ),
@@ -77,7 +79,7 @@ class _ChatView extends State<ChatView> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                color: Colors.lightBlueAccent.shade200,
+                // color: Colors.lightBlueAccent.shade200,
                 height: 655,
                 child: ListView.builder(
                   padding: EdgeInsets.all(15),
@@ -87,29 +89,37 @@ class _ChatView extends State<ChatView> {
                       sTexto: chatTexts[index].text!,
                       onShortClick: ItemShortClick,
                       index: index,
-                      
                     );
                   },
-
-
                 ),
               ),
-              Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                Padding(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0)),
-                Flexible(child: inputMsg),
-                Container(
-                  child: OutlinedButton(
-                    onPressed: SendBtnPressed,
-                    child: Icon(Icons.send),
-                    style: ButtonStyle(
-                        shape: MaterialStatePropertyAll(CircleBorder()),
-                        backgroundColor:
-                            MaterialStatePropertyAll(Colors.white)),
+              Container(
+                color: Colors.lightBlueAccent.shade700,
+                width: double.infinity,
+                height: 75,
+                child:
+                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                  Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 20.0, vertical: 20.0)),
+                  Flexible(child: inputMsg),
+                  Container(
+                    child: OutlinedButton(
+                      onPressed: () {
+                        SendBtnPressed();
+                      },
+                      child: Icon(
+                        Icons.send,
+                        size: 20,
+                      ),
+                      style: ButtonStyle(
+                          shape: MaterialStatePropertyAll(CircleBorder()),
+                          backgroundColor:
+                              MaterialStatePropertyAll(Colors.white)),
+                    ),
                   ),
-                ),
-              ]),
+                ]),
+              )
             ]),
       ),
     );

@@ -20,19 +20,21 @@ class _HomeView extends State<HomeView> {
     return Scaffold(
       drawer: Drawer(
         child: ListView(
-          padding: EdgeInsets.zero,
+          padding: EdgeInsets.all(20),
           children: [
-             DrawerHeader(
+            DrawerHeader(
               decoration: BoxDecoration(
-                color: Colors.blue,
+                shape: BoxShape.circle,
+                image: DecorationImage(image: AssetImage("assets/user1.png")),
               ),
-              child: Text(' Aquí vendrá tu usuario'),
+              child: Text(""),
             ),
             ListTile(
-              title:  Text('Editar Perfil'),
+              title: Text('Editar Perfil'),
               onTap: () {
                 Navigator.of(context).pushNamed('/onBoarding');
               },
+
             ),
             ListTile(
               title: Text('Cerrar Sesión'),
@@ -52,7 +54,6 @@ class _HomeView extends State<HomeView> {
         child: <Widget>[
           friends,
           Container(
-            color: Colors.lightBlueAccent.shade400,
             alignment: Alignment.center,
             child: Text('Msng U'),
           ),

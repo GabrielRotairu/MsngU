@@ -50,7 +50,7 @@ class _ChatHomeView extends State<ChatHomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.lightBlueAccent.shade400,
+    //  backgroundColor: Colors.lightBlueAccent.shade400,
       body: Center(
         child: ListView.separated(
           padding: const EdgeInsets.all(8),
@@ -61,6 +61,7 @@ class _ChatHomeView extends State<ChatHomeView> {
               sMensaje: "aquí vendrá el ultimo mensaje",
               onShortClick: ItemShortClick,
               index: index,
+              aImage: "assets/user.png",
             );
           },
           separatorBuilder: (BuildContext context, int index) {
