@@ -5,10 +5,11 @@ class ChatTextItem extends StatelessWidget {
   final Function(int Index) onShortClick;
   final int index;
 
-  ChatTextItem({Key? key,
-    this.sTexto = "HOLA :)",
-    required this.onShortClick,
-    required this.index})
+  ChatTextItem(
+      {Key? key,
+      this.sTexto = "HOLA :)",
+      required this.onShortClick,
+      required this.index})
       : super(key: key);
 
   @override
@@ -16,28 +17,26 @@ class ChatTextItem extends StatelessWidget {
     // TODO: implement build
 
     return Container(
-      child: Column(children: <Widget>[
+      child: Column(
+        children: <Widget>[
+          Row(children: <Widget>[
+            Container(
+              child: Flexible( child:Text(
+                sTexto,
+                style: TextStyle(color: Colors.white),
+                maxLines: 1,
+                overflow: TextOverflow.clip,
 
-        Row(children: <Widget>[
-          Container(
-            child: Text(
-              sTexto,
-              style: TextStyle(color: Colors.white),
+              ),),
+              padding: EdgeInsets.fromLTRB(15.0, 10.0, 15.0, 10.0),
+              decoration: BoxDecoration(
+                  color: Colors.black12,
+                  borderRadius: BorderRadius.circular(8.0)),
+              margin: EdgeInsets.fromLTRB(10.0, 5.0, 10.0, 5.0),
             ),
-            padding: EdgeInsets.fromLTRB(15.0, 10.0, 15.0, 10.0),
-            decoration: BoxDecoration(
-                color: Colors.black12,
-                borderRadius: BorderRadius.circular(8.0)),
-            margin: EdgeInsets.only(right: 5.0),
-
-          ),
-        ],mainAxisAlignment: MainAxisAlignment.end
-        ),
-      ],),
+          ], mainAxisAlignment: MainAxisAlignment.end),
+        ],
+      ),
     );
   }
-
-
-
-
 }

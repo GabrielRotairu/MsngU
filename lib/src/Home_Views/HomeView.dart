@@ -22,14 +22,14 @@ class _HomeView extends State<HomeView> {
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
-            const DrawerHeader(
+             DrawerHeader(
               decoration: BoxDecoration(
                 color: Colors.blue,
               ),
-              child: Text('Drawer Header'),
+              child: Text(' Aquí vendrá tu usuario'),
             ),
             ListTile(
-              title: const Text('Editar Perfil'),
+              title:  Text('Editar Perfil'),
               onTap: () {
                 Navigator.of(context).pushNamed('/onBoarding');
               },

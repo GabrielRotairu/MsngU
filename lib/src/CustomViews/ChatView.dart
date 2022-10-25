@@ -30,7 +30,7 @@ class _ChatView extends State<ChatView> {
         DataHolder().chat.uid +
         "/" +
         DataHolder().sCOLLETCTIONS_CHAT_TEXTS_NAME;
-    final docRef = db.collection(path).withConverter(
+    final docRef = db.collection(path).orderBy('time').withConverter(
         fromFirestore: ChatText.fromFirestore,
         toFirestore: (ChatText text, _) => text.toFirestore());
     final docSnap = await docRef.snapshots().listen(
@@ -79,7 +79,7 @@ class _ChatView extends State<ChatView> {
               Container(
                 color: Colors.lightBlueAccent.shade200,
                 height: 655,
-                child: ListView.separated(
+                child: ListView.builder(
                   padding: EdgeInsets.all(15),
                   itemCount: chatTexts.length,
                   itemBuilder: (BuildContext context, int index) {
@@ -87,11 +87,11 @@ class _ChatView extends State<ChatView> {
                       sTexto: chatTexts[index].text!,
                       onShortClick: ItemShortClick,
                       index: index,
+                      
                     );
                   },
-                  separatorBuilder: (BuildContext context, int index) {
-                    return const Divider();
-                  },
+
+
                 ),
               ),
               Row(mainAxisAlignment: MainAxisAlignment.center, children: [
