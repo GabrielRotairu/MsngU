@@ -2,6 +2,7 @@ import 'package:betamsngu/src/Singleton/DataHolder.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class SplashView extends StatefulWidget {
   @override
@@ -20,7 +21,7 @@ class _SplashView extends State<SplashView> {
   }
 
   void isUserLogged() async {
-    await Future.delayed(Duration(seconds: 5));
+    await Future.delayed(Duration(seconds: 3));
     if (FirebaseAuth.instance.currentUser == null) {
       Navigator.of(context).popAndPushNamed("/LogIn");
     } else {
@@ -35,8 +36,12 @@ class _SplashView extends State<SplashView> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
+        child: LoadingAnimationWidget.hexagonDots(
+          color: Colors.lightBlueAccent,
+          size: 100,
+        ),
 
-        child: Text("Bienvenido  :)"),
+
 
       ),
     );
