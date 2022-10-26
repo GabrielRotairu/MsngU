@@ -1,6 +1,5 @@
-import 'package:betamsngu/src/CustomViews/ChatView.dart';
-import 'package:betamsngu/src/CustomViews/Friends_View.dart';
 import 'package:betamsngu/src/Home_Views/ChatHome_View.dart';
+import 'package:betamsngu/src/Home_Views/FriendsHome_View.dart';
 import 'package:flutter/material.dart';
 
 class HomeView extends StatefulWidget {
@@ -13,8 +12,7 @@ class HomeView extends StatefulWidget {
 class _HomeView extends State<HomeView> {
   int currentPageIndex = 0;
   ChatHomeView chats = ChatHomeView();
-  Friends_View friends = Friends_View();
-
+FriendsHome_View friends= FriendsHome_View();
   @override
   Widget build(BuildContext context) {
     return Scaffold(

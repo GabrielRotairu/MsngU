@@ -1,4 +1,5 @@
 import 'package:betamsngu/src/CustomViews//ChatView.dart';
+import 'package:betamsngu/src/CustomViews/Friends_View.dart';
 import 'package:betamsngu/src/Home_Views/ChatHome_View.dart';
 import 'package:betamsngu/src/Home_Views/HomeView.dart';
 import 'package:betamsngu/src/LogIn_Views/onBoardingView.dart';
@@ -23,6 +24,7 @@ class App extends StatelessWidget {
         '/Splash': (context) => SplashView(),
         '/ChatHome': (context) => ChatHomeView(),
         '/Chats': (context)=> ChatView(),
+        '/Friends' :(context) => Friends_View(),
       },
     );
   }
