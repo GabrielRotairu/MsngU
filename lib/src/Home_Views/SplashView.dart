@@ -36,9 +36,11 @@ class _SplashView extends State<SplashView> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
+
         child: LoadingAnimationWidget.hexagonDots(
+
           color: Colors.lightBlueAccent,
-          size: 100,
+          size: 70,
         ),
 
 

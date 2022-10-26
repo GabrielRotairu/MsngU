@@ -1,10 +1,10 @@
 import 'package:betamsngu/src/CustomViews//ChatView.dart';
 import 'package:betamsngu/src/Home_Views/ChatHome_View.dart';
 import 'package:betamsngu/src/Home_Views/HomeView.dart';
-import 'package:betamsngu/src/Home_Views/onBoardingView.dart';
+import 'package:betamsngu/src/LogIn_Views/onBoardingView.dart';
 import 'package:betamsngu/src/LogIn_Views/LogInView.dart';
 import 'package:betamsngu/src/LogIn_Views/RegisterView.dart';
-import 'package:betamsngu/src/LogIn_Views/SplashView.dart';
+import 'package:betamsngu/src/Home_Views/SplashView.dart';
 import 'package:flutter/material.dart';
 
 class App extends StatelessWidget {

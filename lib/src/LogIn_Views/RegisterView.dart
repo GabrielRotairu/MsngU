@@ -9,7 +9,7 @@ class RegisterView extends StatelessWidget {
       String emailAddres, String password, BuildContext context) async {
     try {
       final credential =
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: emailAddres,
         password: password,
       );
@@ -42,7 +42,6 @@ class RegisterView extends StatelessWidget {
       sTitulo: "Password",
       blIsPassword: true,
       tLength: 8,
-
     );
     return Scaffold(
       appBar: AppBar(
@@ -50,34 +49,49 @@ class RegisterView extends StatelessWidget {
         backgroundColor: Colors.lightBlueAccent.shade700,
       ),
       body: Center(
-        child:
-        Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          input1,
-          input2,
-          input3,
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              ElevatedButton(
-                onPressed: () {
-                  if (input2.getText() == input3.getText()) {
-                    btnRegister(input1.getText(), input2.getText(), context);
-                  }
-                },
-                child: Text('Registrarse'),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).popAndPushNamed('/LogIn');
-                },
-                child: Text('Volver a Iniciar Sesión'),
-              ),
-            ],
-          )
-        ],
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              child: input1,
+              margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+            ),
+            Container(
+              child: input2,
+              margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+            ),
+            Container(
+              child: input3,
+              margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Container(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      if (input2.getText() == input3.getText()) {
+                        btnRegister(
+                            input1.getText(), input2.getText(), context);
+                      Navigator.of(context).popAndPushNamed('/onBoarding');
+                      }
+
+                    },
+                    child: Text('Registrarse'),
+                  ),
+                ),
+                Container(child:  ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).popAndPushNamed('/LogIn');
+                  },
+                  child: Text('Volver al Log In'),
+                ),),
+
+              ],
+            )
+          ],
         ),
       ),
-      backgroundColor: Colors.lightBlueAccent.shade400,
     );
   }
 }

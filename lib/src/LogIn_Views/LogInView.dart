@@ -5,13 +5,11 @@ import 'package:flutter/material.dart';
 C_InputText input1 = C_InputText(
   sTitulo: "Ususario",
   tLength: 50,
-
 );
 C_InputText input2 = C_InputText(
   sTitulo: "Password",
   blIsPassword: true,
   tLength: 8,
-
 );
 
 void btnlog(BuildContext context) async {
@@ -45,28 +43,40 @@ class LogInView extends StatelessWidget {
       ),
       body: Center(
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          input1,
-          input2,
-          Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          Padding(padding: EdgeInsets.all(20)),
+          Container(
+            child: input1,
+            margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+          ),
+          Container(
+            child: input2,
+            margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              ElevatedButton(
-                onPressed: () {
-                  btnlog(context);
-                },
-                child: Text('Acceder'),
+              Container(
+                child: ElevatedButton(
+                  onPressed: () {
+                    btnlog(context);
+                  },
+                  child: Text('Acceder'),
+                ),
+                margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
               ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).popAndPushNamed('/Register');
-                },
-                child: Text('Registrarse'),
+              Container(
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).popAndPushNamed('/Register');
+                  },
+                  child: Text('Registrarse'),
+                ),
+                margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
               ),
             ],
           ),
         ]),
       ),
-      backgroundColor: Colors.lightBlueAccent.shade400,
     );
   }
 }

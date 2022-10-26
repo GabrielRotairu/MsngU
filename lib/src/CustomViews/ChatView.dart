@@ -1,4 +1,4 @@
-import 'package:betamsngu/src/Custom_Objects/C_InputText.dart';
+import 'package:betamsngu/src/Custom_Objects/C_ChatInput.dart';
 import 'package:betamsngu/src/Firebase_Objects/ChatText.dart';
 import 'package:betamsngu/src/List_Items/ChatTextItem.dart';
 import 'package:betamsngu/src/Singleton/DataHolder.dart';
@@ -15,15 +15,12 @@ class ChatView extends StatefulWidget {
 class _ChatView extends State<ChatView> {
   FirebaseFirestore db = FirebaseFirestore.instance;
   List<ChatText> chatTexts = [];
-  C_InputText inputMsg = C_InputText();
-  late bool _isButtonDisabled;
-
+C_ChatInput mensaje= C_ChatInput();
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     descargarTextos();
-    _isButtonDisabled = false;
   }
 
   void descargarTextos() async {
@@ -57,11 +54,11 @@ class _ChatView extends State<ChatView> {
         DataHolder().sCOLLETCTIONS_CHAT_TEXTS_NAME;
     final docRef = db.collection(path);
     ChatText texto = ChatText(
-        text: inputMsg.getText(),
+        text: mensaje.getText(),
         time: Timestamp.now(),
         author: DataHolder().usuario.UID);
     await docRef.add(texto.toFirestore());
-    inputMsg.clear();
+    mensaje.clear();
   }
 
   void ItemShortClick(int index) {}
@@ -79,7 +76,6 @@ class _ChatView extends State<ChatView> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                // color: Colors.lightBlueAccent.shade200,
                 height: 655,
                 child: ListView.builder(
                   padding: EdgeInsets.all(15),
@@ -102,7 +98,7 @@ class _ChatView extends State<ChatView> {
                   Padding(
                       padding: EdgeInsets.symmetric(
                           horizontal: 20.0, vertical: 20.0)),
-                  Flexible(child: inputMsg),
+                  Flexible(child: mensaje),
                   Container(
                     child: OutlinedButton(
                       onPressed: () {

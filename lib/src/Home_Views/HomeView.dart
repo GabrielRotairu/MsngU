@@ -23,23 +23,26 @@ class _HomeView extends State<HomeView> {
           padding: EdgeInsets.all(20),
           children: [
             DrawerHeader(
+
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 image: DecorationImage(image: AssetImage("assets/user1.png")),
               ),
               child: Text(""),
             ),
+            ListTile(title: Text("Aquí vendrá tu nombre"),),
+
             ListTile(
               title: Text('Editar Perfil'),
               onTap: () {
-                Navigator.of(context).pushNamed('/onBoarding');
+               // Navigator.of(context).pushNamed('/onBoarding');
               },
 
             ),
             ListTile(
-              title: Text('Cerrar Sesión'),
+              title: Text('Cerrar Sesión',style: TextStyle(color: Colors.red)),
               onTap: () {
-                Navigator.of(context).pushNamed('/LogIn');
+                Navigator.of(context).popAndPushNamed('/LogIn');
               },
             ),
           ],

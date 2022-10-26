@@ -9,18 +9,16 @@ class onBoardingView extends StatelessWidget {
   FirebaseFirestore db = FirebaseFirestore.instance;
   C_InputText input1 = C_InputText(
     sTitulo: "Name",
-    iIcon: Icon(Icons.text_fields_rounded),
+    tLength: 100,
   );
   C_InputText input2 = C_InputText(
     sTitulo: "Age",
-    iIcon: Icon(Icons.calendar_month_rounded),
+    tLength: 3,
   );
-  C_InputText input3 = C_InputText(
-    sTitulo: "email",
-    iIcon: Icon(Icons.email_rounded),
-  );
+
   C_InputText input4 = C_InputText(
     sTitulo: "Address",
+    tLength: 100,
     iIcon: Icon(Icons.location_city_rounded),
   );
 
@@ -28,11 +26,10 @@ class onBoardingView extends StatelessWidget {
     Usuario usuario = new Usuario(
         name: input1.getText(),
         email: input4.getText(),
-        address: input3.getText(),
         age: int.parse(input2.getText()));
 
     db
-        .collection("perfiles")
+        .collection("Usuarios")
         .doc(FirebaseAuth.instance.currentUser?.uid)
         .set(usuario.toFirestore())
         .onError((e, _) => print("Error on writing document : $e"));
@@ -43,27 +40,47 @@ class onBoardingView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('On Boarding'),
-        backgroundColor: Colors.teal.shade800,
+        backgroundColor: Colors.lightBlueAccent.shade700,
       ),
-      body: Center(
+      body: SingleChildScrollView(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            input3,
-            input2,
-            input4,
-            input1,
+            Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10)),
+            TextButton(
+              onPressed: () {},
+              child: Image.asset('assets/user.png', scale: 1.25),
+            ),
+            Container(
+              margin: EdgeInsets.all(20),
+              child: input4,
+            ),
+            Container(
+              margin: EdgeInsets.all(20),
+              child: input2,
+            ),
+            Container(
+              margin: EdgeInsets.all(20),
+              child: input1,
+            ),
+
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 ElevatedButton(
                   onPressed: () {
                     btnAceptar();
+                    Navigator.of(context).popAndPushNamed('/Home');
                   },
                   child: Text('Crear Usuario'),
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    input1.clear();
+                    input2.clear();
+                    input4.clear();
+                  },
                   child: Text('Cancelar'),
                 ),
               ],
@@ -71,7 +88,7 @@ class onBoardingView extends StatelessWidget {
           ],
         ),
       ),
-      backgroundColor: Colors.teal.shade200,
+      //backgroundColor: Colors.teal.shade200,
     );
   }
 }
