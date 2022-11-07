@@ -10,18 +10,16 @@ class FriendsHome_View extends StatefulWidget {
 }
 
 class _FriendsHome_View extends State<FriendsHome_View> {
-
   FirebaseFirestore db = FirebaseFirestore.instance;
   String sNombre = "AQUI IRA EL NOMBRE";
   List<Usuario> friendList = [];
 
-
   void getFriends() async {
-
-    final docsRef = db.collection("Usuario").
-    orderBy("Amigos").
-    withConverter(fromFirestore: Usuario.fromFirestore,
-        toFirestore: (Usuario usuario, _) => usuario.toFirestore());
+    final docsRef = db
+        .collection("Usuarios")
+        .withConverter(
+            fromFirestore: Usuario.fromFirestore,
+            toFirestore: (Usuario usuario, _) => usuario.toFirestore());
 
     final docsSnap = await docsRef.get();
 
@@ -31,58 +29,29 @@ class _FriendsHome_View extends State<FriendsHome_View> {
       }
     });
   }
-  void listItemShortClicked(int index){
-    print("DEBUG: "+index.toString());
-    print("DEBUG: "+friendList[index].name!);
-    //DataHolder().selectedChatRoom=chatRooms[index];
+
+  void listItemShortClicked(int index) {
+    print("DEBUG: " + index.toString());
+    print("DEBUG: " + friendList[index].name!);
     Navigator.of(context).pushNamed("/Friends");
   }
 
-    @override
-    Widget build(BuildContext context) {
-      // TODO: implement build
-      return Scaffold(
-          body: GridView.count(
-            primary: false,
-            padding: const EdgeInsets.all(20),
-            crossAxisSpacing: 10,
-            mainAxisSpacing: 10,
-            crossAxisCount: 2,
-            children: <Widget>[
-              Container(
-                padding: const EdgeInsets.all(8),
-                color: Colors.teal[100],
-                child: Text("amigo1"),
-              ),
-              Container(
-                padding: const EdgeInsets.all(8),
-                color: Colors.teal[200],
-                child: Text('amigo1'),
-              ),
-              Container(
-                padding: const EdgeInsets.all(8),
-                color: Colors.teal[300],
-                child: Text(' amigo1'),
-              ),
-              Container(
-                padding: const EdgeInsets.all(8),
-                color: Colors.teal[400],
-                child: Text('amigo1'),
-              ),
-              Container(
-                padding: const EdgeInsets.all(8),
-                color: Colors.teal[500],
-                child: Text('amigo1'),
-              ),
-              Container(
-                padding: const EdgeInsets.all(8),
-                color: Colors.teal[600],
-                child: Text('amigo1'),
-              ),
-            ],
-          ));
-    }
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Scaffold(
+      body: GridView.builder(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 3,
+          ),
+          itemCount: friendList.length,
+          itemBuilder: (BuildContext context, int index) {
+            return Card(
+              color: Colors.amber,
+              child: Center(
+                  child: Text(friendList[index].friends.toString().toUpperCase())),
+            );
+          }),
+    );
   }
-
-
-
+}

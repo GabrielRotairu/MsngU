@@ -3,6 +3,7 @@ import 'package:betamsngu/src/Firebase_Objects/ChatText.dart';
 import 'package:betamsngu/src/List_Items/ChatTextItem.dart';
 import 'package:betamsngu/src/Singleton/DataHolder.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class ChatView extends StatefulWidget {
@@ -15,7 +16,10 @@ class ChatView extends StatefulWidget {
 class _ChatView extends State<ChatView> {
   FirebaseFirestore db = FirebaseFirestore.instance;
   List<ChatText> chatTexts = [];
-C_ChatInput mensaje= C_ChatInput();
+  C_ChatInput mensaje = C_ChatInput(
+    Tcolor: Colors.white,
+  );
+
   @override
   void initState() {
     // TODO: implement initState
@@ -56,7 +60,7 @@ C_ChatInput mensaje= C_ChatInput();
     ChatText texto = ChatText(
         text: mensaje.getText(),
         time: Timestamp.now(),
-        author: DataHolder().usuario.UID);
+        author: FirebaseAuth.instance.currentUser?.uid);
     await docRef.add(texto.toFirestore());
     mensaje.clear();
   }
@@ -85,37 +89,38 @@ C_ChatInput mensaje= C_ChatInput();
                       sTexto: chatTexts[index].text!,
                       onShortClick: ItemShortClick,
                       index: index,
+                      sAuthor: chatTexts[index].author!,
                     );
                   },
                 ),
               ),
               Container(
-                color: Colors.lightBlueAccent.shade700,
-                width: double.infinity,
-                height: 75,
-                child:
-                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  Padding(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: 20.0, vertical: 20.0)),
-                  Flexible(child: mensaje),
-                  Container(
-                    child: OutlinedButton(
-                      onPressed: () {
-                        SendBtnPressed();
-                      },
-                      child: Icon(
-                        Icons.send,
-                        size: 20,
-                      ),
-                      style: ButtonStyle(
-                          shape: MaterialStatePropertyAll(CircleBorder()),
-                          backgroundColor:
-                              MaterialStatePropertyAll(Colors.white)),
-                    ),
-                  ),
-                ]),
-              )
+                  color: Colors.lightBlueAccent.shade700,
+                  width: double.infinity,
+                  height: 75,
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 20.0, vertical: 20.0)),
+                        Flexible(child: mensaje),
+                        Container(
+                          child: OutlinedButton(
+                            onPressed: () {
+                              SendBtnPressed();
+                            },
+                            child: Icon(
+                              Icons.send,
+                              size: 20,
+                            ),
+                            style: ButtonStyle(
+                                shape: MaterialStatePropertyAll(CircleBorder()),
+                                backgroundColor:
+                                    MaterialStatePropertyAll(Colors.white)),
+                          ),
+                        ),
+                      ])),
             ]),
       ),
     );

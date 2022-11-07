@@ -1,5 +1,7 @@
 import 'package:betamsngu/src/Home_Views/ChatHome_View.dart';
 import 'package:betamsngu/src/Home_Views/FriendsHome_View.dart';
+import 'package:betamsngu/src/Singleton/DataHolder.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class HomeView extends StatefulWidget {
@@ -28,7 +30,7 @@ FriendsHome_View friends= FriendsHome_View();
               ),
               child: Text(""),
             ),
-            ListTile(title: Text("Aquí vendrá tu nombre"),),
+            ListTile(title: Text(DataHolder().usuario.name!),),
 
             ListTile(
               title: Text('Editar Perfil'),

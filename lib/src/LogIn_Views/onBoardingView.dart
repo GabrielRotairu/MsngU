@@ -25,7 +25,7 @@ class onBoardingView extends StatelessWidget {
   void btnAceptar() async {
     Usuario usuario = new Usuario(
         name: input1.getText(),
-        email: input4.getText(),
+        address: input4.getText(),
         age: int.parse(input2.getText()));
 
     db

@@ -1,4 +1,6 @@
+import 'package:betamsngu/src/Singleton/DataHolder.dart';
 import 'package:flutter/material.dart';
+import 'package:chat_bubbles/chat_bubbles.dart';
 
 class C_ChatInput extends StatelessWidget {
   final String sTexto;
@@ -8,15 +10,16 @@ class C_ChatInput extends StatelessWidget {
 
   C_ChatInput(
       {Key? key,
-        this.sTexto = "",
-        this.iIcon = const Icon(Icons.abc),
-        this.Tcolor=Colors.black})
+      this.sTexto = "",
+      this.iIcon = const Icon(Icons.abc),
+      this.Tcolor = Colors.black})
       : super(key: key);
 
   String getText() {
     return myController.text;
   }
-  void clear(){
+
+  void clear() {
     myController.clear();
   }
 
@@ -36,7 +39,6 @@ class C_ChatInput extends StatelessWidget {
           gapPadding: 20.0,
           borderRadius: BorderRadius.all(Radius.circular(30)),
           borderSide: BorderSide(color: Colors.black),
-
         ),
       ),
     );
