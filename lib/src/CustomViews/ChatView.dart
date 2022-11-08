@@ -2,6 +2,7 @@ import 'package:betamsngu/src/Custom_Objects/C_ChatInput.dart';
 import 'package:betamsngu/src/Firebase_Objects/ChatText.dart';
 import 'package:betamsngu/src/List_Items/ChatTextItem.dart';
 import 'package:betamsngu/src/Singleton/DataHolder.dart';
+import 'package:chat_bubbles/message_bars/message_bar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -37,7 +38,7 @@ class _ChatView extends State<ChatView> {
         fromFirestore: ChatText.fromFirestore,
         toFirestore: (ChatText text, _) => text.toFirestore());
     final docSnap = await docRef.snapshots().listen(
-      (event) {
+          (event) {
         setState(() {
           chatTexts.clear();
 
@@ -50,7 +51,7 @@ class _ChatView extends State<ChatView> {
     );
   }
 
-  void SendBtnPressed() async {
+  void SendBtnPressed(String txt) async {
     final String path = DataHolder().sCOLLETCTIONS_CHATS_NAME +
         "/" +
         DataHolder().chat.uid +
@@ -58,7 +59,7 @@ class _ChatView extends State<ChatView> {
         DataHolder().sCOLLETCTIONS_CHAT_TEXTS_NAME;
     final docRef = db.collection(path);
     ChatText texto = ChatText(
-        text: mensaje.getText(),
+        text: txt,
         time: Timestamp.now(),
         author: FirebaseAuth.instance.currentUser?.uid);
     await docRef.add(texto.toFirestore());
@@ -70,59 +71,68 @@ class _ChatView extends State<ChatView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        // leading: Image(image: AssetImage("assets/user.png")),
-        title: Text(DataHolder().chat.userName!),
-        backgroundColor: Colors.lightBlueAccent.shade700,
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Container(
-                height: 655,
-                child: ListView.builder(
-                  padding: EdgeInsets.all(15),
-                  itemCount: chatTexts.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return ChatTextItem(
-                      sTexto: chatTexts[index].text!,
-                      onShortClick: ItemShortClick,
-                      index: index,
-                      sAuthor: chatTexts[index].author!,
-                    );
-                  },
-                ),
-              ),
-              Container(
-                  color: Colors.lightBlueAccent.shade700,
-                  width: double.infinity,
-                  height: 75,
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 20.0, vertical: 20.0)),
-                        Flexible(child: mensaje),
+        appBar: AppBar(
+          // leading: Image(image: AssetImage("assets/user.png")),
+          title: Text(DataHolder().chat.userName!),
+          backgroundColor: Colors.lightBlueAccent.shade700,
+        ),
+        body: SingleChildScrollView(
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    height: 662,
+                    child: ListView.builder(
+                      padding: EdgeInsets.all(15),
+                      itemCount: chatTexts.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return ChatTextItem(
+                          sTexto: chatTexts[index].text!,
+                          onShortClick: ItemShortClick,
+                          index: index,
+                          sAuthor: chatTexts[index].author!,
+                        );
+                      },
+                    ),
+                  ),
+                  MessageBar(
+                    onSend: (txt) =>SendBtnPressed(txt),
+                    actions: [
+
+                      Padding(
+                        padding: EdgeInsets.only(left: 8, right: 8),
+                        child: InkWell(
+                          child: Icon(
+                            Icons.camera_alt,
+                            color: Colors.blueAccent,
+                            size: 25,
+                          ),
+                          onTap: () {},
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  /*  Flexible(child: mensaje),
                         Container(
-                          child: OutlinedButton(
+                          child: ElevatedButton(
                             onPressed: () {
                               SendBtnPressed();
                             },
                             child: Icon(
                               Icons.send,
-                              size: 20,
+                              size: 30,
                             ),
                             style: ButtonStyle(
-                                shape: MaterialStatePropertyAll(CircleBorder()),
+                                shape: MaterialStatePropertyAll(StadiumBorder()),
                                 backgroundColor:
-                                    MaterialStatePropertyAll(Colors.white)),
+                                    MaterialStatePropertyAll(Colors.blue)),
                           ),
-                        ),
-                      ])),
-            ]),
-      ),
+                          margin: EdgeInsets.all(10),
+                        ),*/
+                ])),
+
+
     );
   }
 }
