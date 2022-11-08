@@ -20,7 +20,7 @@ class ChatItem extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Container(
-        color: Colors.lightBlue.shade600,
+        color: Colors.black12,
         child: ListTile(
           leading: Image(
             image: AssetImage(aImage),
@@ -30,7 +30,7 @@ class ChatItem extends StatelessWidget {
           onTap: () {
             onShortClick(index);
           },
-          textColor: Colors.white,
+          textColor: Colors.black,
         ));
   }
 /*
