@@ -1,4 +1,7 @@
-import 'package:betamsngu/src/Custom_Objects/C_ChatInput.dart';
+
+
+import 'dart:io';
+
 import 'package:betamsngu/src/Firebase_Objects/ChatText.dart';
 import 'package:betamsngu/src/List_Items/ChatTextItem.dart';
 import 'package:betamsngu/src/Singleton/DataHolder.dart';
@@ -6,6 +9,7 @@ import 'package:chat_bubbles/message_bars/message_bar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ChatView extends StatefulWidget {
   @override
@@ -17,9 +21,10 @@ class ChatView extends StatefulWidget {
 class _ChatView extends State<ChatView> {
   FirebaseFirestore db = FirebaseFirestore.instance;
   List<ChatText> chatTexts = [];
-  C_ChatInput mensaje = C_ChatInput(
-    Tcolor: Colors.white,
-  );
+  final ImagePicker _picker = ImagePicker();
+  bool bImageLoaded = false;
+  late File imageFile;
+  double dListHeightPercentage = 0.8;
 
   @override
   void initState() {
@@ -38,7 +43,7 @@ class _ChatView extends State<ChatView> {
         fromFirestore: ChatText.fromFirestore,
         toFirestore: (ChatText text, _) => text.toFirestore());
     final docSnap = await docRef.snapshots().listen(
-          (event) {
+      (event) {
         setState(() {
           chatTexts.clear();
 
@@ -63,76 +68,79 @@ class _ChatView extends State<ChatView> {
         time: Timestamp.now(),
         author: FirebaseAuth.instance.currentUser?.uid);
     await docRef.add(texto.toFirestore());
-    mensaje.clear();
+    setState(() {
+      bImageLoaded = false;
+      dListHeightPercentage = 0.8;
+    });
   }
 
   void ItemShortClick(int index) {}
 
+  void selectImage() async {
+    final XFile? photo = await _picker.pickImage(source: ImageSource.camera);
+    if (photo != null) {
+      setState(() {
+        imageFile = File(photo.path);
+        bImageLoaded=true;
+        dListHeightPercentage=0.5;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          // leading: Image(image: AssetImage("assets/user.png")),
-          title: Text(DataHolder().chat.userName!),
-          backgroundColor: Colors.lightBlueAccent.shade700,
-        ),
-        body: SingleChildScrollView(
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    height: 662,
-                    child: ListView.builder(
-                      padding: EdgeInsets.all(15),
-                      itemCount: chatTexts.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return ChatTextItem(
-                          sTexto: chatTexts[index].text!,
-                          onShortClick: ItemShortClick,
-                          index: index,
-                          sAuthor: chatTexts[index].author!,
-                        );
-                      },
+      appBar: AppBar(
+        // leading: Image(image: AssetImage("assets/user.png")),
+        title: Text(DataHolder().chat.userName!),
+        backgroundColor: Colors.lightBlueAccent.shade700,
+      ),
+      body: SingleChildScrollView(
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+            Container(
+              height: 662,
+              child: ListView.builder(
+                padding: EdgeInsets.all(15),
+                itemCount: chatTexts.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return ChatTextItem(
+                    sTexto: chatTexts[index].text!,
+                    onShortClick: ItemShortClick,
+                    index: index,
+                    sAuthor: chatTexts[index].author!,
+                  );
+                },
+              ),
+            ),
+            if (bImageLoaded)
+              Container(
+                height: 5,
+                child: Image.file(
+                  imageFile,
+                  fit: BoxFit.fitHeight,
+                ),
+              ),
+            MessageBar(
+              onSend: (txt) => SendBtnPressed(txt),
+              actions: [
+                Padding(
+                  padding: EdgeInsets.only(left: 8, right: 8),
+                  child: InkWell(
+                    child: Icon(
+                      Icons.camera_alt,
+                      color: Colors.blueAccent,
+                      size: 25,
                     ),
+                    onTap: () {
+                      selectImage();
+                    },
                   ),
-                  MessageBar(
-                    onSend: (txt) =>SendBtnPressed(txt),
-                    actions: [
-
-                      Padding(
-                        padding: EdgeInsets.only(left: 8, right: 8),
-                        child: InkWell(
-                          child: Icon(
-                            Icons.camera_alt,
-                            color: Colors.blueAccent,
-                            size: 25,
-                          ),
-                          onTap: () {},
-                        ),
-                      ),
-                    ],
-                  ),
-
-                  /*  Flexible(child: mensaje),
-                        Container(
-                          child: ElevatedButton(
-                            onPressed: () {
-                              SendBtnPressed();
-                            },
-                            child: Icon(
-                              Icons.send,
-                              size: 30,
-                            ),
-                            style: ButtonStyle(
-                                shape: MaterialStatePropertyAll(StadiumBorder()),
-                                backgroundColor:
-                                    MaterialStatePropertyAll(Colors.blue)),
-                          ),
-                          margin: EdgeInsets.all(10),
-                        ),*/
-                ])),
-
-
+                ),
+              ],
+            ),
+          ])),
     );
   }
 }
