@@ -100,7 +100,7 @@ class _ChatView extends State<ChatView> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
             Container(
-              height: 662,
+              height:DataHolder().platformAdmin.getScreenHeight(context)*dListHeightPercentage,
               child: ListView.builder(
                 padding: EdgeInsets.all(15),
                 itemCount: chatTexts.length,
@@ -114,14 +114,12 @@ class _ChatView extends State<ChatView> {
                 },
               ),
             ),
-            if (bImageLoaded)
-              Container(
-                height: 5,
-                child: Image.file(
-                  imageFile,
-                  fit: BoxFit.fitHeight,
+                if(bImageLoaded)Container(height: DataHolder().platformAdmin.getScreenHeight(context)*0.3,
+                  child: Image.file(
+                    imageFile,
+                    fit: BoxFit.fitHeight,
+                  ),
                 ),
-              ),
             MessageBar(
               onSend: (txt) => SendBtnPressed(txt),
               actions: [
@@ -131,7 +129,7 @@ class _ChatView extends State<ChatView> {
                     child: Icon(
                       Icons.camera_alt,
                       color: Colors.blueAccent,
-                      size: 25,
+                      size: DataHolder().platformAdmin.getScreenWidth(context)*0.065,
                     ),
                     onTap: () {
                       selectImage();

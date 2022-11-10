@@ -12,10 +12,12 @@ class DataHolder {
   Chat chat = Chat();
   String sCOLLETCTIONS_CHATS_NAME = "Chats";
   String sCOLLETCTIONS_CHAT_TEXTS_NAME = "Texts";
-  late Platform_Admin platform_admin = Platform_Admin();
+  late Platform_Admin platformAdmin;
+
 
   DataHolder._internal() {
     //sMensaje="Lorem Ipsum ";
+    platformAdmin=Platform_Admin();
   }
 
   factory DataHolder() {
