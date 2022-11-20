@@ -4,11 +4,13 @@ class ChatText {
   late final String? text;
   late final Timestamp? time;
   late final String? author;
+  final String? imgUrl;
 
   ChatText({
     this.text = "",
     this.time,
-    this.author=""
+    this.author="",
+    this.imgUrl="",
 
   });
 
@@ -21,6 +23,7 @@ class ChatText {
       text: data?['text'],
       time: data?['time'],
       author: data?['author'],
+      imgUrl: data?['imgUrl'],
 
 
     );
@@ -31,7 +34,7 @@ class ChatText {
       if (text != null) "text": text,
       if (time != null) "time": time,
       if (author != null) "author": author,
-
+      if (imgUrl != null) "imgUrl": imgUrl,
 
     };
   }

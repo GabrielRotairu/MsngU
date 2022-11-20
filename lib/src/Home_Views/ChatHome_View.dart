@@ -69,6 +69,12 @@ class _ChatHomeView extends State<ChatHomeView> {
           },
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.of(context).pushNamed('routeName');
+        },
+        child: const Icon(Icons.add),
+      ),
     );
   }
 }

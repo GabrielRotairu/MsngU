@@ -1,7 +1,5 @@
-
-
 import 'dart:io';
-
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:betamsngu/src/Firebase_Objects/ChatText.dart';
 import 'package:betamsngu/src/List_Items/ChatTextItem.dart';
 import 'package:betamsngu/src/Singleton/DataHolder.dart';
@@ -57,32 +55,54 @@ class _ChatView extends State<ChatView> {
   }
 
   void SendBtnPressed(String txt) async {
-    final String path = DataHolder().sCOLLETCTIONS_CHATS_NAME +
+
+    String sUrl = "";
+    if (bImageLoaded) {
+      final storageRef =
+          FirebaseStorage.instance.ref(); //Apunta a la / del storage
+      final imagen1ImagesRef = storageRef.child("imagenes/Avatar.png");
+
+      try {
+        await imagen1ImagesRef.putFile(imageFile);
+        sUrl=await imagen1ImagesRef.getDownloadURL();
+
+        setState(() {
+          bImageLoaded = false;
+          dListHeightPercentage = 0.8;
+        });
+      } on FirebaseException catch (e) {
+        print("HUBO UN ERROR EN EL ENVIO DE LA IMAGEN: $e");
+      }
+
+    }
+    String path = DataHolder().sCOLLETCTIONS_CHATS_NAME +
         "/" +
         DataHolder().chat.uid +
         "/" +
         DataHolder().sCOLLETCTIONS_CHAT_TEXTS_NAME;
+
     final docRef = db.collection(path);
-    ChatText texto = ChatText(
+
+    ChatText nuevoMensaje = ChatText(
         text: txt,
+        author: FirebaseAuth.instance.currentUser?.uid,
         time: Timestamp.now(),
-        author: FirebaseAuth.instance.currentUser?.uid);
-    await docRef.add(texto.toFirestore());
-    setState(() {
-      bImageLoaded = false;
-      dListHeightPercentage = 0.8;
-    });
+        imgUrl: sUrl);
+
+    await docRef.add(nuevoMensaje.toFirestore());
   }
 
   void ItemShortClick(int index) {}
 
   void selectImage() async {
-    final XFile? photo = await _picker.pickImage(source: ImageSource.camera);
-    if (photo != null) {
+    final XFile? pickedFile =
+        await _picker.pickImage(source: ImageSource.gallery);
+    //final XFile? pickedFile = await _picker.pickImage(source: ImageSource.camera);
+    if (pickedFile != null) {
       setState(() {
-        imageFile = File(photo.path);
-        bImageLoaded=true;
-        dListHeightPercentage=0.5;
+        imageFile = File(pickedFile.path);
+        bImageLoaded = true;
+        dListHeightPercentage = 0.5;
       });
     }
   }
@@ -100,7 +120,8 @@ class _ChatView extends State<ChatView> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
             Container(
-              height:DataHolder().platformAdmin.getScreenHeight(context)*dListHeightPercentage,
+              height: DataHolder().platformAdmin.getScreenHeight(context) *
+                  dListHeightPercentage,
               child: ListView.builder(
                 padding: EdgeInsets.all(15),
                 itemCount: chatTexts.length,
@@ -110,16 +131,20 @@ class _ChatView extends State<ChatView> {
                     onShortClick: ItemShortClick,
                     index: index,
                     sAuthor: chatTexts[index].author!,
+                      imgUrl: chatTexts[index].imgUrl,
                   );
                 },
               ),
             ),
-                if(bImageLoaded)Container(height: DataHolder().platformAdmin.getScreenHeight(context)*0.3,
-                  child: Image.file(
-                    imageFile,
-                    fit: BoxFit.fitHeight,
-                  ),
+            if (bImageLoaded)
+              Container(
+                height:
+                    DataHolder().platformAdmin.getScreenHeight(context) * 0.3,
+                child: Image.file(
+                  imageFile,
+                  fit: BoxFit.fitHeight,
                 ),
+              ),
             MessageBar(
               onSend: (txt) => SendBtnPressed(txt),
               actions: [
@@ -129,7 +154,8 @@ class _ChatView extends State<ChatView> {
                     child: Icon(
                       Icons.camera_alt,
                       color: Colors.blueAccent,
-                      size: DataHolder().platformAdmin.getScreenWidth(context)*0.065,
+                      size: DataHolder().platformAdmin.getScreenWidth(context) *
+                          0.065,
                     ),
                     onTap: () {
                       selectImage();

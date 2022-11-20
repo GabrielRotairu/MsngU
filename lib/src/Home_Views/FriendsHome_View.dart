@@ -17,6 +17,7 @@ class _FriendsHome_View extends State<FriendsHome_View> {
   void getFriends() async {
     final docsRef = db
         .collection("Usuarios")
+        .where("friends", isEqualTo: true)
         .withConverter(
             fromFirestore: Usuario.fromFirestore,
             toFirestore: (Usuario usuario, _) => usuario.toFirestore());
@@ -49,9 +50,17 @@ class _FriendsHome_View extends State<FriendsHome_View> {
             return Card(
               color: Colors.amber,
               child: Center(
-                  child: Text(friendList[index].friends.toString().toUpperCase())),
+                  child:
+                      Text(friendList[index].friends.toString().toUpperCase())),
             );
           }),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.of(context).pushNamed('routeName');
+          // Add your onPressed code here!
+        },
+        child: const Icon(Icons.add),
+      ),
     );
   }
 }

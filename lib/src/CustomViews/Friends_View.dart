@@ -17,9 +17,10 @@ class _Friends_View extends State<Friends_View> {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [Text("A")],
+          children: [],
         ),
       ),
+
     );
   }
 }
