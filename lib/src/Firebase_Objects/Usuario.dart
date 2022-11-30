@@ -4,7 +4,6 @@ class Usuario {
   final String? address;
   late final int? age;
   late final String? name;
-  final String? gender;
   final List<String>? friends;
   final List<DocumentReference>? rooms;
   final String UID;
@@ -13,7 +12,6 @@ class Usuario {
       {this.address = "",
       this.age = 0,
       this.name = "",
-        this.gender="",
       this.friends = const [],
       this.rooms = const [],
       this.UID = ""
@@ -27,7 +25,6 @@ class Usuario {
     return Usuario(
       age: data?['age'],
       name: data?['name'],
-      gender: data?['gender'],
       friends: data?['friends'] is Iterable ? List.from(data?['friends']) : null,
       rooms: data?['rooms'] is Iterable ? List.from(data?['rooms']) : null,
       UID: snapshot.id,
@@ -39,7 +36,6 @@ class Usuario {
       if (address != null) "address": address,
       if (age != 0) "age": age,
       if (name != null) "name": name,
-      if(gender!=null) "gender":gender,
       if (friends!.isNotEmpty) "friends": friends,
       if (rooms!.isNotEmpty) "rooms": rooms,
     };

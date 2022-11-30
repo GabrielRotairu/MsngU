@@ -19,20 +19,21 @@ class onBoardingView extends StatelessWidget {
   C_InputText input4 = C_InputText(
     sTitulo: "Address",
     tLength: 100,
-    iIcon: Icon(Icons.location_city_rounded),
   );
 
-  void btnAceptar() async {
+  void btnAceptar(context) async {
     Usuario usuario = new Usuario(
         name: input1.getText(),
         address: input4.getText(),
         age: int.parse(input2.getText()));
 
-    db
+    await db
         .collection("Usuarios")
         .doc(FirebaseAuth.instance.currentUser?.uid)
         .set(usuario.toFirestore())
         .onError((e, _) => print("Error on writing document : $e"));
+    Navigator.of(context).popAndPushNamed('/Home');
+
   }
 
   @override
@@ -64,14 +65,12 @@ class onBoardingView extends StatelessWidget {
               margin: EdgeInsets.all(20),
               child: input1,
             ),
-
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    btnAceptar();
-                    Navigator.of(context).popAndPushNamed('/Home');
+                    btnAceptar(context);
                   },
                   child: Text('Crear Usuario'),
                 ),
@@ -80,6 +79,7 @@ class onBoardingView extends StatelessWidget {
                     input1.clear();
                     input2.clear();
                     input4.clear();
+                    Navigator.of(context).popAndPushNamed('/LogIn');
                   },
                   child: Text('Cancelar'),
                 ),
