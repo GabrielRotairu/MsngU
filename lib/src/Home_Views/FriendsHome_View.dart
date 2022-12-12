@@ -1,6 +1,8 @@
 import 'package:betamsngu/src/Firebase_Objects/Usuario.dart';
+import 'package:betamsngu/src/Singleton/DataHolder.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:betamsngu/src/List_Items//FriendItem.dart';
 
 class FriendsHome_View extends StatefulWidget {
   @override
@@ -14,19 +16,23 @@ class _FriendsHome_View extends State<FriendsHome_View> {
   String sNombre = "AQUI IRA EL NOMBRE";
   List<Usuario> friendList = [];
 
-  void getFriends() async {
-    final docsRef = db
-        .collection("Usuarios")
-        .where("friends", isEqualTo: true)
-        .withConverter(
-            fromFirestore: Usuario.fromFirestore,
-            toFirestore: (Usuario usuario, _) => usuario.toFirestore());
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getUsers();
+  }
 
-    final docsSnap = await docsRef.get();
+  void getUsers() async {
+    final ref = db.collection(DataHolder().sCOLLETCTIONS_USERS).withConverter(
+          fromFirestore: Usuario.fromFirestore,
+          toFirestore: (Usuario u, _) => u.toFirestore(),
+        );
+    final docSnap = await ref.get();
 
     setState(() {
-      for (int i = 0; i < docsSnap.docs.length; i++) {
-        friendList.add(docsSnap.docs[i].data());
+      for (int i = 0; i < docSnap.docs.length; i++) {
+        friendList.add(docSnap.docs[i].data());
       }
     });
   }
@@ -34,6 +40,7 @@ class _FriendsHome_View extends State<FriendsHome_View> {
   void listItemShortClicked(int index) {
     print("DEBUG: " + index.toString());
     print("DEBUG: " + friendList[index].name!);
+    DataHolder().usuario = friendList[index];
     Navigator.of(context).pushNamed("/Friends");
   }
 
@@ -41,25 +48,26 @@ class _FriendsHome_View extends State<FriendsHome_View> {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
-      body: GridView.builder(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3,
-          ),
-          itemCount: friendList.length,
-          itemBuilder: (BuildContext context, int index) {
-            return Card(
-              color: Colors.amber,
-              child: Center(
-                  child:
-                      Text(friendList[index].friends.toString().toUpperCase())),
-            );
-          }),
+      body: Center(
+        child: GridView.builder(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 1,
+            ),padding: EdgeInsets.all(8),
+
+            itemCount: friendList.length,
+            itemBuilder: (BuildContext context, int index) {
+              return FriendItem(sName: friendList[index].name!, iAge: friendList[index].age!, onShortClick: listItemShortClicked, index: index);
+            }
+        ),
+
+        ),
+
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.of(context).pushNamed('routeName');
           // Add your onPressed code here!
         },
-        child: const Icon(Icons.add),
+        child: const Icon(Icons.search_sharp),
       ),
     );
   }

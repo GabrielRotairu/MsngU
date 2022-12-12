@@ -1,6 +1,7 @@
 import 'package:betamsngu/src/CustomViews//ChatView.dart';
 import 'package:betamsngu/src/CustomViews/Friends_View.dart';
 import 'package:betamsngu/src/Home_Views/ChatHome_View.dart';
+import 'package:betamsngu/src/Home_Views/FriendsHome_View.dart';
 import 'package:betamsngu/src/Home_Views/HomeView.dart';
 import 'package:betamsngu/src/LogIn_Views/onBoardingView.dart';
 import 'package:betamsngu/src/LogIn_Views/LogInView.dart';
@@ -15,7 +16,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: implement build
     return MaterialApp(
-      initialRoute: '/LogIn',
+      initialRoute: '/Splash',
       routes: {
         '/Home': (context) => HomeView(),
         '/LogIn': (context) => LogInView(),
@@ -25,6 +26,7 @@ class App extends StatelessWidget {
         '/ChatHome': (context) => ChatHomeView(),
         '/Chats': (context)=> ChatView(),
         '/Friends' :(context) => Friends_View(),
+        '/FriendsHome': (context)=> FriendsHome_View(),
       },
     );
   }

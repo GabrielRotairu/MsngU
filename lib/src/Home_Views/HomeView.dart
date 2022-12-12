@@ -12,7 +12,7 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeView extends State<HomeView> {
-  int currentPageIndex = 0;
+  int currentPageIndex = 1;
   ChatHomeView chats = ChatHomeView();
 FriendsHome_View friends= FriendsHome_View();
   @override
@@ -30,8 +30,7 @@ FriendsHome_View friends= FriendsHome_View();
               ),
               child: Text(""),
             ),
-            ListTile(title: Text(DataHolder().usuario.name!),),
-
+Padding(padding: EdgeInsets.only(top:DataHolder().platformAdmin.dSCREEN_HEIGHT+450)),
             ListTile(
               title: Text('Editar Perfil'),
               onTap: () {
@@ -74,7 +73,7 @@ FriendsHome_View friends= FriendsHome_View();
           NavigationDestination(
             selectedIcon: Icon(Icons.person_rounded),
             icon: Icon(Icons.person_outline),
-            label: 'Friends',
+            label: 'Users',
           ),
           NavigationDestination(
             selectedIcon: Icon(Icons.add_circle),

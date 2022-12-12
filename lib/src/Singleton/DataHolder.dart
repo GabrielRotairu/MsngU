@@ -11,6 +11,7 @@ class DataHolder {
   Usuario usuario = Usuario();
   Chat chat = Chat();
   String sCOLLETCTIONS_CHATS_NAME = "Chats";
+  String sCOLLETCTIONS_USERS = "Usuarios";
   String sCOLLETCTIONS_CHAT_TEXTS_NAME = "Texts";
   late Platform_Admin platformAdmin;
 

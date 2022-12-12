@@ -60,7 +60,7 @@ class _ChatView extends State<ChatView> {
     if (bImageLoaded) {
       final storageRef =
           FirebaseStorage.instance.ref(); //Apunta a la / del storage
-      final imagen1ImagesRef = storageRef.child("imagenes/Avatar.png");
+      final imagen1ImagesRef = storageRef.child("imagenes/user.png");
 
       try {
         await imagen1ImagesRef.putFile(imageFile);

@@ -20,12 +20,18 @@ class onBoardingView extends StatelessWidget {
     sTitulo: "Address",
     tLength: 100,
   );
+  C_InputText input5 = C_InputText(
+    sTitulo: "Description",
+    tLength: 50,
+  );
 
   void btnAceptar(context) async {
     Usuario usuario = new Usuario(
-        name: input1.getText(),
-        address: input4.getText(),
-        age: int.parse(input2.getText()));
+      name: input1.getText(),
+      address: input4.getText(),
+      age: int.parse(input2.getText()),
+      description: input5.getText(),
+    );
 
     await db
         .collection("Usuarios")
@@ -33,7 +39,10 @@ class onBoardingView extends StatelessWidget {
         .set(usuario.toFirestore())
         .onError((e, _) => print("Error on writing document : $e"));
     Navigator.of(context).popAndPushNamed('/Home');
+  }
 
+  void subirImg() async {
+    print("fotito");
   }
 
   @override
@@ -49,10 +58,14 @@ class onBoardingView extends StatelessWidget {
           children: [
             Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10)),
-            TextButton(
-              onPressed: () {},
-              child: Image.asset('assets/user.png', scale: 1.25),
-            ),
+            InkWell(
+                child: IconButton(
+              onPressed: () {
+                subirImg();
+              },
+              icon: Icon(Icons.account_circle),
+              iconSize: 90,
+            )),
             Container(
               margin: EdgeInsets.all(20),
               child: input4,
@@ -60,6 +73,10 @@ class onBoardingView extends StatelessWidget {
             Container(
               margin: EdgeInsets.all(20),
               child: input2,
+            ),
+            Container(
+              margin: EdgeInsets.all(20),
+              child: input5,
             ),
             Container(
               margin: EdgeInsets.all(20),
@@ -79,6 +96,7 @@ class onBoardingView extends StatelessWidget {
                     input1.clear();
                     input2.clear();
                     input4.clear();
+                    input5.clear();
                     Navigator.of(context).popAndPushNamed('/LogIn');
                   },
                   child: Text('Cancelar'),

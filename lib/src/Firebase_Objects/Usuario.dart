@@ -4,17 +4,16 @@ class Usuario {
   final String? address;
   late final int? age;
   late final String? name;
-  final List<String>? friends;
-  final List<DocumentReference>? rooms;
+  late final String? description;
+
   final String UID;
 
   Usuario(
       {this.address = "",
       this.age = 0,
       this.name = "",
-      this.friends = const [],
-      this.rooms = const [],
-      this.UID = ""
+      this.UID = "",
+        this.description=""
       });
 
   factory Usuario.fromFirestore(
@@ -23,10 +22,10 @@ class Usuario {
   ) {
     final data = snapshot.data();
     return Usuario(
+      address: data?["address"],
       age: data?['age'],
       name: data?['name'],
-      friends: data?['friends'] is Iterable ? List.from(data?['friends']) : null,
-      rooms: data?['rooms'] is Iterable ? List.from(data?['rooms']) : null,
+      description: data?['description'],
       UID: snapshot.id,
     );
   }
@@ -36,8 +35,8 @@ class Usuario {
       if (address != null) "address": address,
       if (age != 0) "age": age,
       if (name != null) "name": name,
-      if (friends!.isNotEmpty) "friends": friends,
-      if (rooms!.isNotEmpty) "rooms": rooms,
+      if(description!=null) "description": description,
+
     };
   }
 }
