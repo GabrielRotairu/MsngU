@@ -17,22 +17,73 @@ class _Friends_View extends State<Friends_View> {
     return Scaffold(
       appBar: AppBar(
 
-        title: Text(DataHolder().usuario.name!),
       ),
-      body: Center(
-
+      body: Padding(
+        padding: EdgeInsets.fromLTRB(30, 40, 30, 0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Ink.image(image: AssetImage("assets/user.png")),
-            Container(child: Text(DataHolder().usuario.description!)),
-            Container(child: Text(DataHolder().usuario.age.toString()!)),
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Center(
+              child: CircleAvatar(
+                backgroundImage: AssetImage('assets/user.png'),
+                radius: 100,
+              ),
+            ),
+            Divider(
+              height: 60,
+              color: Colors.grey[800],
+            ),
+            Text(
+              'User Name : ',
+              style: TextStyle(color: Colors.grey, letterSpacing: 2),
+            ),
+            Flexible(child:
+            Text(
+              DataHolder().usuario.name!,
+              style: TextStyle(
+                  color: Colors.grey,
+                  letterSpacing: 2,
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold),
+            ) ),
+            Divider(
+              height: 60,
+              color: Colors.grey[800],
+            ),
+            Flexible(child:
+            Text(
+              'Age',
+              style: TextStyle(color: Colors.grey, letterSpacing: 2),
+            )),
 
-
+            SizedBox(height: 10),
+            Text(
+              DataHolder().usuario.age!.toString(),
+              style: TextStyle(
+                  color: Colors.grey,
+                  letterSpacing: 2,
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold),
+            ),
+            Divider(
+              height: 60,
+              color: Colors.grey[800],
+            ),
+            SizedBox(height: 30),
+            Row(
+              children: <Widget>[
+                Flexible(
+                  child: Text(
+                    DataHolder().usuario.description!,
+                    style: TextStyle(
+                        color: Colors.grey, fontSize: 15, letterSpacing: 1),
+                  ),
+                )
+              ],
+            ),
           ],
         ),
       ),
-
     );
   }
 }

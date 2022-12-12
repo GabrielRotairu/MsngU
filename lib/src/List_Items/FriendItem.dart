@@ -1,4 +1,3 @@
-import 'package:betamsngu/src/Singleton/DataHolder.dart';
 import 'package:flutter/material.dart';
 
 class FriendItem extends StatelessWidget {
