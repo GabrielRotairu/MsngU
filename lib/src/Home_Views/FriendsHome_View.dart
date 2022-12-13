@@ -64,13 +64,7 @@ class _FriendsHome_View extends State<FriendsHome_View> {
                   index: index);
             }),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.of(context).pushNamed('routeName');
-          // Add your onPressed code here!
-        },
-        child: const Icon(Icons.search_sharp),
-      ),
+
     );
   }
 }

@@ -14,7 +14,8 @@ class HomeView extends StatefulWidget {
 class _HomeView extends State<HomeView> {
   int currentPageIndex = 1;
   ChatHomeView chats = ChatHomeView();
-FriendsHome_View friends= FriendsHome_View();
+  FriendsHome_View friends = FriendsHome_View();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,23 +24,23 @@ FriendsHome_View friends= FriendsHome_View();
           padding: EdgeInsets.all(20),
           children: [
             DrawerHeader(
-
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 image: DecorationImage(image: AssetImage("assets/user1.png")),
               ),
               child: Text(""),
             ),
-Padding(padding: EdgeInsets.only(top:DataHolder().platformAdmin.dSCREEN_HEIGHT+450)),
+            Padding(
+                padding: EdgeInsets.only(
+                    top: DataHolder().platformAdmin.dSCREEN_HEIGHT + 450)),
             ListTile(
               title: Text('Editar Perfil'),
               onTap: () {
-               // Navigator.of(context).pushNamed('/onBoarding');
+                // Navigator.of(context).pushNamed('/onBoarding');
               },
-
             ),
             ListTile(
-              title: Text('Cerrar Sesión',style: TextStyle(color: Colors.red)),
+              title: Text('Cerrar Sesión', style: TextStyle(color: Colors.red)),
               onTap: () {
                 Navigator.of(context).popAndPushNamed('/LogIn');
               },
@@ -63,6 +64,7 @@ Padding(padding: EdgeInsets.only(top:DataHolder().platformAdmin.dSCREEN_HEIGHT+4
         ][currentPageIndex],
       ),
       bottomNavigationBar: NavigationBar(
+        backgroundColor: Colors.lightBlue.shade700,
         onDestinationSelected: (int index) {
           setState(() {
             currentPageIndex = index;

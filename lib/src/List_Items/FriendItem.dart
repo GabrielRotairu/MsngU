@@ -34,7 +34,7 @@ class FriendItem extends StatelessWidget {
               style: TextStyle(color: Colors.black.withOpacity(0.6)),
             ),
             subtitle: Text(iAge.toString()),
-          /*  onTap: () {
+            /*  onTap: () {
               onShortClick(index);
             },*/
           ),
@@ -46,38 +46,15 @@ class FriendItem extends StatelessWidget {
           ButtonBar(
             alignment: MainAxisAlignment.start,
             children: [
-              ElevatedButton(
-                style: ButtonStyle(shape: MaterialStatePropertyAll(StadiumBorder())),
-                onPressed: () {
+              
+              ElevatedButton(onPressed: (){
+                
 
-
-                },
-                child:  Text('Agregar Amigo'),
-              ),
+              }, child: Text("Add Friend ")),
             ],
           )
         ],
       ),
     );
-
-    /*ListTile(
-      leading: CircleAvatar(
-        backgroundImage: AssetImage(
-          "assets/user.png",
-        ),
-      ),
-      shape: RoundedRectangleBorder(
-        side: BorderSide(color: Colors.grey, width: 1),
-        borderRadius: BorderRadius.circular(5),
-      ),
-      title: Text(sName),
-      subtitle: Text(
-        sDesc,
-        style: TextStyle(color: Colors.black.withOpacity(0.6)),
-      ),
-      onTap: () {
-        onShortClick(index);
-      },
-    );*/
   }
 }

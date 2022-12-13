@@ -49,7 +49,7 @@ class onBoardingView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('On Boarding'),
+        title:  Text('User Data'),
         backgroundColor: Colors.lightBlueAccent.shade700,
       ),
       body: SingleChildScrollView(
@@ -89,7 +89,7 @@ class onBoardingView extends StatelessWidget {
                   onPressed: () {
                     btnAceptar(context);
                   },
-                  child: Text('Crear Usuario'),
+                  child: Text('Create User'),
                 ),
                 ElevatedButton(
                   onPressed: () {
@@ -99,7 +99,7 @@ class onBoardingView extends StatelessWidget {
                     input5.clear();
                     Navigator.of(context).popAndPushNamed('/LogIn');
                   },
-                  child: Text('Cancelar'),
+                  child: Text('Cancel'),
                 ),
               ],
             )

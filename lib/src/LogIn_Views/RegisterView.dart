@@ -30,7 +30,7 @@ class RegisterView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     C_InputText input1 = C_InputText(
-      sTitulo: "Ususario",
+      sTitulo: "Email",
       tLength: 50,
     );
     C_InputText input2 = C_InputText(
@@ -39,13 +39,13 @@ class RegisterView extends StatelessWidget {
       tLength: 8,
     );
     C_InputText input3 = C_InputText(
-      sTitulo: "Password",
+      sTitulo: "Confirm Password",
       blIsPassword: true,
       tLength: 8,
     );
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Registrarse'),
+        title:  Text('Sign In'),
         backgroundColor: Colors.lightBlueAccent.shade700,
       ),
       body: Center(
@@ -77,14 +77,14 @@ class RegisterView extends StatelessWidget {
                       }
 
                     },
-                    child: Text('Registrarse'),
+                    child: Text('Sign In'),
                   ),
                 ),
                 Container(child:  ElevatedButton(
                   onPressed: () {
                     Navigator.of(context).popAndPushNamed('/LogIn');
                   },
-                  child: Text('Volver al Log In'),
+                  child: Text('Go Back'),
                 ),),
 
               ],

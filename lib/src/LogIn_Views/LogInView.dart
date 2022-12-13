@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 C_InputText input1 = C_InputText(
-  sTitulo: "Ususario",
+  sTitulo: "Email",
   tLength: 50,
 );
 C_InputText input2 = C_InputText(
@@ -60,7 +60,7 @@ class LogInView extends StatelessWidget {
                   onPressed: () {
                     btnlog(context);
                   },
-                  child: Text('Acceder'),
+                  child: Text('Log In'),
                 ),
                 margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
               ),
@@ -69,7 +69,7 @@ class LogInView extends StatelessWidget {
                   onPressed: () {
                     Navigator.of(context).popAndPushNamed('/Register');
                   },
-                  child: Text('Registrarse'),
+                  child: Text('Sign In'),
                 ),
                 margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
               ),

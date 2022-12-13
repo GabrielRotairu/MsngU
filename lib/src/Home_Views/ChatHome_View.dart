@@ -28,7 +28,7 @@ class _ChatHomeView extends State<ChatHomeView> {
   }
 
   void actualizarListas() async {
-    final docRef = db.collection("Chats").withConverter(
+    final docRef = db.collection(DataHolder().sCOLLETCTIONS_CHATS_NAME).withConverter(
         fromFirestore: Chat.fromFirestore,
         toFirestore: (Chat chat, _) => chat.toFirestore());
     final docSnap = await docRef.get();
@@ -39,6 +39,9 @@ class _ChatHomeView extends State<ChatHomeView> {
       }
     });
   }
+
+
+
 
   void ItemShortClick(int index) {
     print("DEBUG:   " + index.toString());
@@ -58,7 +61,7 @@ class _ChatHomeView extends State<ChatHomeView> {
           itemBuilder: (BuildContext context, int index) {
             return ChatItem(
               sTexto: ChatList[index].userName!,
-              sMensaje: "aquí vendrá el ultimo mensaje",
+              sMensaje: "hola :)",
               onShortClick: ItemShortClick,
               index: index,
               aImage: "assets/user.png",
