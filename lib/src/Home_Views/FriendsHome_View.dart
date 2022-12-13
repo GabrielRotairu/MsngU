@@ -41,7 +41,7 @@ class _FriendsHome_View extends State<FriendsHome_View> {
     print("DEBUG: " + index.toString());
     print("DEBUG: " + friendList[index].name!);
     DataHolder().usuario = friendList[index];
-    Navigator.of(context).pushNamed("/Friends");
+    //Navigator.of(context).pushNamed("/Users");
   }
 
   @override
@@ -52,16 +52,18 @@ class _FriendsHome_View extends State<FriendsHome_View> {
         child: GridView.builder(
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 1,
-            ),padding: EdgeInsets.all(8),
-
+            ),
+            padding: EdgeInsets.all(8),
             itemCount: friendList.length,
             itemBuilder: (BuildContext context, int index) {
-              return FriendItem(sName: friendList[index].name!, iAge: friendList[index].age!, onShortClick: listItemShortClicked, index: index);
-            }
-        ),
-
-        ),
-
+              return FriendItem(
+                  sName: friendList[index].name!,
+                  iAge: friendList[index].age!,
+                  sDesc: friendList[index].description!,
+                  onShortClick: listItemShortClicked,
+                  index: index);
+            }),
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.of(context).pushNamed('routeName');

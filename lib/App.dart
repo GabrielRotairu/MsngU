@@ -25,7 +25,7 @@ class App extends StatelessWidget {
         '/Splash': (context) => SplashView(),
         '/ChatHome': (context) => ChatHomeView(),
         '/Chats': (context)=> ChatView(),
-        '/Friends' :(context) => Friends_View(),
+        '/Users' :(context) => Friends_View(),
         '/FriendsHome': (context)=> FriendsHome_View(),
       },
     );

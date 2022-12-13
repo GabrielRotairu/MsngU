@@ -15,9 +15,7 @@ class _Friends_View extends State<Friends_View> {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
-      appBar: AppBar(
-
-      ),
+      appBar: AppBar(title: Text("")),
       body: Padding(
         padding: EdgeInsets.fromLTRB(30, 40, 30, 0),
         child: Column(
@@ -26,36 +24,35 @@ class _Friends_View extends State<Friends_View> {
             Center(
               child: CircleAvatar(
                 backgroundImage: AssetImage('assets/user.png'),
-                radius: 100,
+                radius: 70,
               ),
             ),
             Divider(
               height: 60,
-              color: Colors.grey[800],
+              color: Colors.grey,
             ),
             Text(
               'User Name : ',
               style: TextStyle(color: Colors.grey, letterSpacing: 2),
             ),
-            Flexible(child:
-            Text(
+            Flexible(
+                child: Text(
               DataHolder().usuario.name!,
               style: TextStyle(
                   color: Colors.grey,
                   letterSpacing: 2,
                   fontSize: 15,
                   fontWeight: FontWeight.bold),
-            ) ),
+            )),
             Divider(
               height: 60,
-              color: Colors.grey[800],
+              color: Colors.grey,
             ),
-            Flexible(child:
-            Text(
-              'Age',
+            Flexible(
+                child: Text(
+              'Age : ',
               style: TextStyle(color: Colors.grey, letterSpacing: 2),
             )),
-
             SizedBox(height: 10),
             Text(
               DataHolder().usuario.age!.toString(),
@@ -67,7 +64,7 @@ class _Friends_View extends State<Friends_View> {
             ),
             Divider(
               height: 60,
-              color: Colors.grey[800],
+              color: Colors.grey,
             ),
             SizedBox(height: 30),
             Row(
