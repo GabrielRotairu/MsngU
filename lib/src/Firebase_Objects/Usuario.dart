@@ -5,16 +5,17 @@ class Usuario {
   late final int? age;
   late final String? name;
   late final String? description;
+  final List<String>? friends;
+  final String uid;
 
-  final String UID;
-
-  Usuario(
-      {this.address = "",
-      this.age = 0,
-      this.name = "",
-      this.UID = "",
-        this.description=""
-      });
+  Usuario({
+    this.address = "",
+    this.age = 0,
+    this.name = "",
+    this.uid = "",
+    this.description = "",
+    this.friends = const [],
+  });
 
   factory Usuario.fromFirestore(
     DocumentSnapshot<Map<String, dynamic>> snapshot,
@@ -26,7 +27,9 @@ class Usuario {
       age: data?['age'],
       name: data?['name'],
       description: data?['description'],
-      UID: snapshot.id,
+      friends:
+          data?["friends "] is Iterable ? List.from(data?["friends"]) : null,
+      uid: data?["uid"],
     );
   }
 
@@ -35,8 +38,8 @@ class Usuario {
       if (address != null) "address": address,
       if (age != 0) "age": age,
       if (name != null) "name": name,
-      if(description!=null) "description": description,
-
+      if (description != null) "description": description,
+      if(friends!.isNotEmpty) "friends" : friends,
     };
   }
 }

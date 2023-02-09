@@ -28,7 +28,7 @@ class _HomeView extends State<HomeView> {
                 shape: BoxShape.circle,
                 image: DecorationImage(image: AssetImage("assets/user1.png")),
               ),
-              child: Text(""),
+              child: Text(FirebaseAuth.instance.currentUser!.uid.toString()),
             ),
             Padding(
                 padding: EdgeInsets.only(

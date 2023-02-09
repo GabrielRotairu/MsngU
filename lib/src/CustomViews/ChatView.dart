@@ -55,7 +55,6 @@ class _ChatView extends State<ChatView> {
   }
 
   void SendBtnPressed(String txt) async {
-
     String sUrl = "";
     if (bImageLoaded) {
       final storageRef =
@@ -64,7 +63,7 @@ class _ChatView extends State<ChatView> {
 
       try {
         await imagen1ImagesRef.putFile(imageFile);
-        sUrl=await imagen1ImagesRef.getDownloadURL();
+        sUrl = await imagen1ImagesRef.getDownloadURL();
 
         setState(() {
           bImageLoaded = false;
@@ -73,9 +72,9 @@ class _ChatView extends State<ChatView> {
       } on FirebaseException catch (e) {
         print("HUBO UN ERROR EN EL ENVIO DE LA IMAGEN: $e");
       }
-
     }
-    String path = DataHolder().sCOLLETCTIONS_CHATS_NAME +
+    String path =
+        DataHolder().sCOLLETCTIONS_CHATS_NAME +
         "/" +
         DataHolder().chat.uid +
         "/" +
@@ -131,7 +130,7 @@ class _ChatView extends State<ChatView> {
                     onShortClick: ItemShortClick,
                     index: index,
                     sAuthor: chatTexts[index].author!,
-                      imgUrl: chatTexts[index].imgUrl,
+                    imgUrl: chatTexts[index].imgUrl,
                   );
                 },
               ),
