@@ -1,3 +1,4 @@
+import 'package:betamsngu/src/CustomViews/MsngU_View.dart';
 import 'package:betamsngu/src/Home_Views/ChatHome_View.dart';
 import 'package:betamsngu/src/Home_Views/FriendsHome_View.dart';
 import 'package:betamsngu/src/Singleton/DataHolder.dart';
@@ -15,6 +16,7 @@ class _HomeView extends State<HomeView> {
   int currentPageIndex = 1;
   ChatHomeView chats = ChatHomeView();
   FriendsHome_View friends = FriendsHome_View();
+  MsngU_View home= MsngU_View();
 
   @override
   Widget build(BuildContext context) {
@@ -28,11 +30,12 @@ class _HomeView extends State<HomeView> {
                 shape: BoxShape.circle,
                 image: DecorationImage(image: AssetImage("assets/user1.png")),
               ),
-              child: Text(FirebaseAuth.instance.currentUser!.uid.toString()),
+              child: Text(""),
             ),
+            ListTile(title: Text(DataHolder().usuario.name.toString()),),
             Padding(
                 padding: EdgeInsets.only(
-                    top: DataHolder().platformAdmin.dSCREEN_HEIGHT + 450)),
+                    top: DataHolder().platformAdmin.dSCREEN_HEIGHT + 45)),
             ListTile(
               title: Text('Editar Perfil'),
               onTap: () {
@@ -48,7 +51,6 @@ class _HomeView extends State<HomeView> {
           ],
         ),
       ),
-      backgroundColor: Colors.lightBlueAccent.shade400,
       appBar: AppBar(
         title: Text('Msng U'),
         backgroundColor: Colors.lightBlueAccent.shade700,
@@ -56,10 +58,7 @@ class _HomeView extends State<HomeView> {
       body: Center(
         child: <Widget>[
           friends,
-          Container(
-            alignment: Alignment.center,
-            child: Text('Msng U'),
-          ),
+          home,
           chats,
         ][currentPageIndex],
       ),

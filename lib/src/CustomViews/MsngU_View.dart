@@ -3,15 +3,15 @@ import 'package:betamsngu/src/Singleton/DataHolder.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-class msngU extends StatefulWidget {
+class MsngU_View extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
-    return _msgnU();
+    return _MsngU_View();
   }
 }
 
-class _msgnU extends State<msngU> {
+class _MsngU_View extends State<MsngU_View> {
   List<Usuario> Friends= [];
   FirebaseFirestore db = FirebaseFirestore.instance;
 
@@ -34,7 +34,9 @@ class _msgnU extends State<msngU> {
     return Scaffold(
         body: Center(
             child: Column(
-      children: [],
+      children: [
+        Text("HOLAAAAA")
+      ],
     )));
   }
 }

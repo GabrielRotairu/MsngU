@@ -20,13 +20,15 @@ class _FriendsHome_View extends State<FriendsHome_View> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    getUsers();
     print("DEBUG------> FRIENDS:"+DataHolder().usuario.friends.toString());
+    getUsers();
+
   }
 
   void getUsers() async {
     final ref = db.collection(DataHolder().sCOLLETCTIONS_USERS).
-    where("uid", whereIn: DataHolder().usuario.friends).withConverter(
+    where("uid", whereIn: DataHolder().usuario.friends).
+    withConverter(
           fromFirestore: Usuario.fromFirestore,
           toFirestore: (Usuario u, _) => u.toFirestore(),
         );

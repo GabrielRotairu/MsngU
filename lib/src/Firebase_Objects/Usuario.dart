@@ -27,8 +27,7 @@ class Usuario {
       age: data?['age'],
       name: data?['name'],
       description: data?['description'],
-      friends:
-          data?["friends "] is Iterable ? List.from(data?["friends"]) : null,
+      friends: data?["friends"] is Iterable ? List.from(data?["friends"]) : null,
       uid: data?["uid"],
     );
   }

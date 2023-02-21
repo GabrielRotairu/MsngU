@@ -18,7 +18,6 @@ class _SplashView extends State<SplashView> {
   @override
   void initState() {
     super.initState();
-   // checkExistingProfile();
     loadAllData();
   }
 
@@ -28,7 +27,7 @@ class _SplashView extends State<SplashView> {
 
     if (FirebaseAuth.instance.currentUser == null) {
       setState(() {
-        Navigator.of(context).popAndPushNamed("/Login");
+        Navigator.of(context).popAndPushNamed("/LogIn");
       });
     } else {
       bool existe = await checkExistingProfile();
@@ -38,7 +37,7 @@ class _SplashView extends State<SplashView> {
         });
       } else {
         setState(() {
-          Navigator.of(context).popAndPushNamed("/OnBoarding");
+          Navigator.of(context).popAndPushNamed("/Register");
         });
       }
     }

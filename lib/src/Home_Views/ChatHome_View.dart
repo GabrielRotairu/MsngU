@@ -28,7 +28,9 @@ class _ChatHomeView extends State<ChatHomeView> {
   }
 
   void actualizarListas() async {
-    final docRef = db.collection("Chats").where("members",arrayContains: DataHolder().usuario.uid).withConverter(
+    final docRef = db.collection("Chats").
+    where("members",arrayContains: DataHolder().usuario.uid).
+    withConverter(
         fromFirestore: Chat.fromFirestore,
         toFirestore: (Chat chat, _) => chat.toFirestore());
     final docSnap = await docRef.get();
