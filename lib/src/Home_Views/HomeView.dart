@@ -1,6 +1,6 @@
 import 'package:betamsngu/src/CustomViews/MsngU_View.dart';
 import 'package:betamsngu/src/Home_Views/ChatHome_View.dart';
-import 'package:betamsngu/src/Home_Views/FriendsHome_View.dart';
+import 'package:betamsngu/src/Home_Views/UsersHome_View.dart';
 import 'package:betamsngu/src/Singleton/DataHolder.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -15,8 +15,8 @@ class HomeView extends StatefulWidget {
 class _HomeView extends State<HomeView> {
   int currentPageIndex = 1;
   ChatHomeView chats = ChatHomeView();
-  FriendsHome_View friends = FriendsHome_View();
   MsngU_View home= MsngU_View();
+  UsersHome_View users= UsersHome_View();
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +57,8 @@ class _HomeView extends State<HomeView> {
       ),
       body: Center(
         child: <Widget>[
-          friends,
+          users,
+
           home,
           chats,
         ][currentPageIndex],
@@ -72,10 +73,11 @@ class _HomeView extends State<HomeView> {
         selectedIndex: currentPageIndex,
         destinations: const <Widget>[
           NavigationDestination(
-            selectedIcon: Icon(Icons.person_rounded),
-            icon: Icon(Icons.person_outline),
+            selectedIcon: Icon(Icons.group_rounded),
+            icon: Icon(Icons.group_outlined),
             label: 'Users',
           ),
+
           NavigationDestination(
             selectedIcon: Icon(Icons.add_circle),
             icon: Icon(Icons.add_circle_outline),

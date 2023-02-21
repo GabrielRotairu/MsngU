@@ -6,6 +6,7 @@ class Usuario {
   late final String? name;
   late final String? description;
   final List<String>? friends;
+  final List<String>? petitions;
   final String uid;
 
   Usuario({
@@ -15,6 +16,7 @@ class Usuario {
     this.uid = "",
     this.description = "",
     this.friends = const [],
+    this.petitions= const[]
   });
 
   factory Usuario.fromFirestore(
@@ -28,6 +30,7 @@ class Usuario {
       name: data?['name'],
       description: data?['description'],
       friends: data?["friends"] is Iterable ? List.from(data?["friends"]) : null,
+      petitions: data?["petitions"] is Iterable ? List.from(data?["petitions"]) : null,
       uid: data?["uid"],
     );
   }
@@ -39,6 +42,7 @@ class Usuario {
       if (name != null) "name": name,
       if (description != null) "description": description,
       if(friends!.isNotEmpty) "friends" : friends,
+      if(petitions!.isNotEmpty) "petitions" : petitions,
     };
   }
 }
