@@ -1,3 +1,6 @@
+import 'package:betamsngu/src/Firebase_Objects/Usuario.dart';
+import 'package:betamsngu/src/Singleton/DataHolder.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class UserItem extends StatelessWidget {
@@ -6,6 +9,16 @@ class UserItem extends StatelessWidget {
   final int iAge;
   final Function(int index) onShortClick;
   final int index;
+  final Usuario usuario;
+void BtnEnviar() async {
+FirebaseFirestore db = FirebaseFirestore.instance;
+await db
+      .collection("Usuarios")
+      .doc(usuario.uid)
+      .set(usuario.toFirestore())
+      .onError((e, _) => print("Error on writing document : $e"));
+}
+
 
   const UserItem(
       {Key? key,
@@ -13,7 +26,7 @@ class UserItem extends StatelessWidget {
         required this.sDesc,
         required this.iAge,
         required this.onShortClick,
-        required this.index})
+        required this.index, required this.usuario})
       : super(key: key);
 
   @override
@@ -48,8 +61,15 @@ class UserItem extends StatelessWidget {
             children: [
 
               ElevatedButton(onPressed: (){
+                if(usuario.petitions!.contains(DataHolder().usuario.uid)){
+                  usuario.petitions!.remove(DataHolder().usuario.uid);
 
+                }
+                else{
+                  usuario.petitions!.add(DataHolder().usuario.uid);
 
+                }
+                BtnEnviar();
               }, child: Text("Send Petition ")),
             ],
           )

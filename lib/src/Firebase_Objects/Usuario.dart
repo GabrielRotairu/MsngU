@@ -43,6 +43,7 @@ class Usuario {
       if (description != null) "description": description,
       if(friends!.isNotEmpty) "friends" : friends,
       if(petitions!.isNotEmpty) "petitions" : petitions,
+      if (uid != null) "uid": uid,
     };
   }
 }

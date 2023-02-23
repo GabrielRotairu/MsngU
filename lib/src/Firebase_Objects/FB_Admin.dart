@@ -7,6 +7,7 @@ class FB_Admin {
   }
 
   Future<Usuario?> DescargarPerfil(String ? idUser) async {
+    print ("ID: "+idUser.toString());
     FirebaseFirestore db= FirebaseFirestore.instance;
     final docRef = db
         .collection("Usuarios")
@@ -17,6 +18,7 @@ class FB_Admin {
     );
 
     final docSnap = await docRef.get();
+    print(docSnap.id);
     return docSnap.data();
   }
 

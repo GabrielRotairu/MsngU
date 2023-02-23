@@ -45,6 +45,7 @@ class _SplashView extends State<SplashView> {
 
   Future<bool> checkExistingProfile() async {
     String? idUser = FirebaseAuth.instance.currentUser?.uid;
+    print (idUser.toString());
     FirebaseFirestore db = FirebaseFirestore.instance;
     final docRef = db.collection("Usuarios").doc(idUser).withConverter(
         fromFirestore: Usuario.fromFirestore,

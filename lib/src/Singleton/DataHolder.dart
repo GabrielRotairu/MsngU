@@ -35,6 +35,11 @@ class DataHolder {
   }
 
   bool isMiPerfilDownloaded() {
-    return usuario != null;
+   if(FirebaseAuth.instance.currentUser== null){
+     return false;
+   }
+   else{
+     return true;
+   }
   }
 }

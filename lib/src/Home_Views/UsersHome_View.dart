@@ -120,11 +120,13 @@ class _UsersHome_View extends State<UsersHome_View> {
                 itemCount: userList.length,
                 itemBuilder: (BuildContext context, int index) {
                   return UserItem(
-                      sName: userList[index].name!,
-                      iAge: userList[index].age!,
-                      sDesc: userList[index].description!,
-                      onShortClick: listItemShortClicked,
-                      index: index);
+                    sName: userList[index].name!,
+                    iAge: userList[index].age!,
+                    sDesc: userList[index].description!,
+                    onShortClick: listItemShortClicked,
+                    index: index,
+                    usuario: userList[index],
+                  );
                 }),
             GridView.builder(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -134,11 +136,13 @@ class _UsersHome_View extends State<UsersHome_View> {
                 itemCount: petitionsList.length,
                 itemBuilder: (BuildContext context, int index) {
                   return PetitionItem(
-                      sName: petitionsList[index].name!,
-                      iAge: petitionsList[index].age!,
-                      sDesc: petitionsList[index].description!,
-                      onShortClick: listItemShortClicked,
-                      index: index);
+                    sName: petitionsList[index].name!,
+                    iAge: petitionsList[index].age!,
+                    sDesc: petitionsList[index].description!,
+                    onShortClick: listItemShortClicked,
+                    index: index,
+                    usuario: petitionsList[index],
+                  );
                 }),
             ListView.builder(
                 padding: EdgeInsets.all(8),
