@@ -8,6 +8,7 @@ class Usuario {
   final List<String>? friends;
   final List<String>? petitions;
   final String uid;
+  bool isChecked=false;
 
   Usuario({
     this.address = "",

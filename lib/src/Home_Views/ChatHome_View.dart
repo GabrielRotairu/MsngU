@@ -16,15 +16,17 @@ class ChatHomeView extends StatefulWidget {
 
 class _ChatHomeView extends State<ChatHomeView> {
   FirebaseFirestore db = FirebaseFirestore.instance;
-  List<Chat> ChatList = [];
+
   List<ChatText> chatTexts = [];
   C_InputText inputMsg = C_InputText();
+  List<Usuario> friendList = [];
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     actualizarListas();
+    getFriends();
   }
 
   void actualizarListas() async {
@@ -37,18 +39,32 @@ class _ChatHomeView extends State<ChatHomeView> {
 print(docRef.toString());
     setState(() {
       for (int i = 0; i < docSnap.docs.length; i++) {
-        ChatList.add(docSnap.docs[i].data());
+        DataHolder().ChatList.add(docSnap.docs[i].data());
+      }
+    });
+  }
+
+  void getFriends() async {
+    final ref = db
+        .collection(DataHolder().sCOLLETCTIONS_USERS)
+        .where("uid", whereIn: DataHolder().usuario.friends)
+        .withConverter(
+      fromFirestore: Usuario.fromFirestore,
+      toFirestore: (Usuario u, _) => u.toFirestore(),
+    );
+    final docSnap = await ref.get();
+
+    setState(() {
+      for (int i = 0; i < docSnap.docs.length; i++) {
+        friendList.add(docSnap.docs[i].data());
       }
     });
   }
 
 
-
-
   void ItemShortClick(int index) {
     print("DEBUG:   " + index.toString());
-    print("DEBUG:   " + ChatList[index].userName!);
-    DataHolder().chat = ChatList[index];
+    DataHolder().chat = DataHolder().ChatList[index];
     Navigator.pushNamed(context, "/Chats");
   }
 
@@ -59,10 +75,10 @@ print(docRef.toString());
       body: Center(
         child: ListView.separated(
           padding: const EdgeInsets.all(8),
-          itemCount: ChatList.length,
+          itemCount: DataHolder().ChatList.length,
           itemBuilder: (BuildContext context, int index) {
             return ChatItem(
-              sTexto: ChatList[index].userName!,
+              sTexto:DataHolder().ChatList[index].chatname!,
               sMensaje: "hola :)",
               onShortClick: ItemShortClick,
               index: index,
@@ -76,7 +92,7 @@ print(docRef.toString());
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.of(context).pushNamed('routeName');
+          Navigator.of(context).pushNamed('/Friends');
         },
         child: const Icon(Icons.add),
       ),

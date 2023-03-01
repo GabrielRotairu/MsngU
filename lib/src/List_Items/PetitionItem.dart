@@ -87,7 +87,7 @@ class PetitionItem extends StatelessWidget {
                 onPressed: () {
 
                   DataHolder().usuario.petitions!.remove(usuario.uid);
-
+                    usuario.petitions!.remove(DataHolder().usuario.uid);
 
                   btnDeny();
                 },

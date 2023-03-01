@@ -31,6 +31,8 @@ class _UsersHome_View extends State<UsersHome_View> {
   }
 
   void getFriends() async {
+    Future.delayed(Duration(seconds: 2));
+
     final ref = db
         .collection(DataHolder().sCOLLETCTIONS_USERS)
         .where("uid", whereIn: DataHolder().usuario.friends)
@@ -48,6 +50,8 @@ class _UsersHome_View extends State<UsersHome_View> {
   }
 
   void getPetitions() async {
+    Future.delayed(Duration(seconds: 2));
+
     final ref = db
         .collection(DataHolder().sCOLLETCTIONS_USERS)
         .where("uid", whereIn: DataHolder().usuario.petitions)
@@ -65,6 +69,7 @@ class _UsersHome_View extends State<UsersHome_View> {
   }
 
   void getUsers() async {
+    Future.delayed(Duration(seconds: 2));
     final ref = db.collection(DataHolder().sCOLLETCTIONS_USERS).withConverter(
           fromFirestore: Usuario.fromFirestore,
           toFirestore: (Usuario u, _) => u.toFirestore(),

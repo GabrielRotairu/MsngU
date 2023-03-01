@@ -111,7 +111,7 @@ class _ChatView extends State<ChatView> {
     return Scaffold(
       appBar: AppBar(
         // leading: Image(image: AssetImage("assets/user.png")),
-        title: Text(DataHolder().chat.userName!),
+        title: Text(DataHolder().chat.chatname!),
         backgroundColor: Colors.lightBlueAccent.shade700,
       ),
       body: SingleChildScrollView(

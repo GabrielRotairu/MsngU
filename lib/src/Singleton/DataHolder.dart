@@ -6,7 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 class DataHolder {
   static final DataHolder _dataHolder = new DataHolder._internal();
-
+  List<Chat> ChatList = [];
   String sMensaje = "";
   Usuario usuario = Usuario();
   Chat chat = Chat();

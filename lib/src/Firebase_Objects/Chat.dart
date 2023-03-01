@@ -2,14 +2,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Chat {
   final String uid;
-  late final String? userName;
+  late final String? chatname;
   final List<String>? members;
 
 
 
   Chat({
     this.uid="",
-    this.userName = "",
+    this.chatname = "",
 this.members= const []
 
   });
@@ -21,7 +21,7 @@ this.members= const []
     final data = snapshot.data();
     return Chat(
       uid: snapshot.id,
-      userName: data?['userName'],
+      chatname: data?['chatname'],
 members: data?['members'] is Iterable ? List.from(data?['members']) : null,
 
 
@@ -31,7 +31,7 @@ members: data?['members'] is Iterable ? List.from(data?['members']) : null,
   Map<String, dynamic> toFirestore() {
     return {
       if(uid!=null) uid :uid,
-      if (userName != null) "userName": userName,
+      if (chatname != null) "chatname": chatname,
 if (members!.isNotEmpty) "members": members,
 
 
