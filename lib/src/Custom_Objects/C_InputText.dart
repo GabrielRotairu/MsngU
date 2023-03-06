@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-
+//Clase para poder usar TextFields en los LogIn
 class C_InputText extends StatelessWidget {
+
+  //Parámetros de nuestro InputText
   final String sTitulo;
   final bool blIsPassword;
   final Icon iIcon;
@@ -16,10 +18,13 @@ class C_InputText extends StatelessWidget {
       this.tLength = 10,
       this.Tcolor=Colors.black})
       : super(key: key);
-
+//Metodo para poder recoger lo que se haya escrito
   String getText() {
     return myController.text;
+
+
   }
+  //Método para borrar lo que se haya escrito
   void clear(){
     myController.clear();
   }

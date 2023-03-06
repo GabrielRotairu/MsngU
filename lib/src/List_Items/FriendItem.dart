@@ -18,6 +18,8 @@ class FriendItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //Clase que nos permite descargar todos los usuarios para que luego se puedan introducir en una lista
+    //En este caso solo descargará los datos de los usuarios que estén en nuestra lista de amigos
     // TODO: implement build
     return Container(
       child: ListTile(

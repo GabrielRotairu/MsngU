@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+//Clase en la que descargamos los datos de un chat a nuestra app
 
 class Chat {
+
   final String uid;
   late final String? chatname;
   final List<String>? members;

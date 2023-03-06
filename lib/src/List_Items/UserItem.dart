@@ -10,6 +10,8 @@ class UserItem extends StatelessWidget {
   final Function(int index) onShortClick;
   final int index;
   final Usuario usuario;
+
+  //Método que nos permite añadir una petición a la lista del usuario que queremos tener como amigo
 void BtnEnviar() async {
 FirebaseFirestore db = FirebaseFirestore.instance;
 await db
@@ -31,6 +33,8 @@ await db
 
   @override
   Widget build(BuildContext context) {
+    //Esta clase nos permitirá ver los usuarios que hay en nuestra base de datos y meterlos en una lista
+    //En este caso descargará la información de todos los usuarios y nos permitirá enviar solicitudes de amistad
     // TODO: implement build
     return Card(
       clipBehavior: Clip.antiAlias,

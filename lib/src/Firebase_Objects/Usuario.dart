@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+//Clase que usaremos para descargar todos los datos de un Usuario que tengamos en nuestra base de datos
 class Usuario {
   final String? address;
   late final int? age;

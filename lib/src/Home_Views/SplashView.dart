@@ -20,7 +20,8 @@ class _SplashView extends State<SplashView> {
     super.initState();
     loadAllData();
   }
-
+//Este método nos va a permitir guardar el estado de la cuenta para no tener que iniciar sesión cada vez que entremos
+// a la app
   void loadAllData() async {
     await Future.delayed(Duration(seconds: 2));
     //CARGAMOS TODOS LOS RECURSOS

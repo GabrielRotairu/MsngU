@@ -13,6 +13,7 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeView extends State<HomeView> {
+  //Establecemos cada página que vamos a mostrar en nuestra pantalla principal
   int currentPageIndex = 1;
   ChatHomeView chats = ChatHomeView();
   MsngU_View home= MsngU_View();
@@ -26,6 +27,7 @@ class _HomeView extends State<HomeView> {
           padding: EdgeInsets.all(20),
           children: [
             DrawerHeader(
+              //Información sobre nuestro usuario.
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 image: DecorationImage(image: AssetImage("assets/user1.png")),
@@ -37,12 +39,14 @@ class _HomeView extends State<HomeView> {
                 padding: EdgeInsets.only(
                     top: DataHolder().platformAdmin.dSCREEN_HEIGHT + 45)),
             ListTile(
+              //En este apartado vamos a poder editar la información del perfil
               title: Text('Editar Perfil'),
               onTap: () {
                 // Navigator.of(context).pushNamed('/onBoarding');
               },
             ),
             ListTile(
+              //En esta nos permitirá cerrar la sesión del usuario
               title: Text('Cerrar Sesión', style: TextStyle(color: Colors.red)),
               onTap: () {
                 Navigator.of(context).popAndPushNamed('/LogIn');
@@ -58,7 +62,6 @@ class _HomeView extends State<HomeView> {
       body: Center(
         child: <Widget>[
           users,
-
           home,
           chats,
         ][currentPageIndex],
@@ -71,18 +74,21 @@ class _HomeView extends State<HomeView> {
           });
         },
         selectedIndex: currentPageIndex,
+        //Vamos a darle valores a cada apartado de nuestro menú de desplazamiento.
         destinations: const <Widget>[
+        //Este apartado nos va a llevar a los usuarios que tenga nuestra base de datos
           NavigationDestination(
             selectedIcon: Icon(Icons.group_rounded),
             icon: Icon(Icons.group_outlined),
             label: 'Users',
           ),
-
+        //Este apartado nos va a llevar a la función especial de nuestra app
           NavigationDestination(
             selectedIcon: Icon(Icons.add_circle),
             icon: Icon(Icons.add_circle_outline),
             label: 'MSNG U',
           ),
+          //Este apartado nos va a llevar a los chats de nuestro Usuario Loggeado
           NavigationDestination(
             // Navigator.of(context).popAndPushNamed("/Chat"),
             selectedIcon: Icon(Icons.chat_bubble),

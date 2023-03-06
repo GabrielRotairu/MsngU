@@ -24,16 +24,16 @@ class DataHolder {
   factory DataHolder() {
     return _dataHolder;
   }
-
+//Descargamos nuestro perfil actual
   Future<void> DescargarMiPerfil() async {
     usuario = FB_Admin().DescargarPerfil(FirebaseAuth.instance.currentUser?.uid)
         as Usuario;
   }
-
+//Descargamos los perfiles restantes
   Future<void> DescargarPerfil(String? idPerfil) async {
     await FB_Admin().DescargarPerfil(idPerfil) as Usuario;
   }
-
+//Comprobamos que nuestro perfil está descargado
   bool isMiPerfilDownloaded() {
    if(FirebaseAuth.instance.currentUser== null){
      return false;

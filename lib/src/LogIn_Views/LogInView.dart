@@ -1,7 +1,7 @@
 import 'package:betamsngu/src/Custom_Objects//C_InputText.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
+//Parámetros de entrada para la comprobación del correo
 C_InputText input1 = C_InputText(
   sTitulo: "Email",
   tLength: 50,
@@ -11,7 +11,7 @@ C_InputText input2 = C_InputText(
   blIsPassword: true,
   tLength: 8,
 );
-
+//Metodo para entrar a la app en caso de tener una cuenta existente ya
 void btnlog(BuildContext context) async {
   print("--------------->" + input1.getText());
   try {

@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 class onBoardingView extends StatelessWidget {
   onBoardingView({Key? key}) : super(key: key);
   FirebaseFirestore db = FirebaseFirestore.instance;
+
+  //Parametros de entrada para introducirle datos al usuario y subirlos a la base de datos
   C_InputText input1 = C_InputText(
     sTitulo: "Name",
     tLength: 100,
@@ -24,7 +26,7 @@ class onBoardingView extends StatelessWidget {
     sTitulo: "Description",
     tLength: 50,
   );
-
+//Método para subir los datos del usuario a la base de datos
   void btnAceptar(context) async {
     Usuario usuario = new Usuario(
       name: input1.getText(),
@@ -40,7 +42,7 @@ class onBoardingView extends StatelessWidget {
         .onError((e, _) => print("Error on writing document : $e"));
     Navigator.of(context).popAndPushNamed('/Home');
   }
-
+//Método para subir la imagen que será usada como el avatar del usuario
   void subirImg() async {
     print("fotito");
   }

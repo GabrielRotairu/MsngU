@@ -14,9 +14,9 @@ class MsngU_View extends StatefulWidget {
 class _MsngU_View extends State<MsngU_View> {
   List<Usuario> Friends= [];
   FirebaseFirestore db = FirebaseFirestore.instance;
-
+//En este método vamos a descargar nuestros amigos a los que les mandaremos un mensaje especial
   void getUsers() async {
-    final ref = db.collection(DataHolder().sCOLLETCTIONS_USERS).withConverter(
+    final ref = db.collection(DataHolder().sCOLLETCTIONS_USERS).where("uid",whereIn: DataHolder().usuario.friends).withConverter(
       fromFirestore: Usuario.fromFirestore,
       toFirestore: (Usuario u, _) => u.toFirestore(),
     );
@@ -30,6 +30,10 @@ class _MsngU_View extends State<MsngU_View> {
   }
   @override
   Widget build(BuildContext context) {
+    //Vamos a hacer un input text para mandar un mensaje especial
+    //Un boton para acceder a la cámara en caso de que queramoso enviar una foto del momento
+    //Otro botón para acceder a nuestra galería y enviar una foto desde ahí
+    //Un último botón para enviar mensajes de voz
     // TODO: implement build
     return Scaffold(
         body: Center(

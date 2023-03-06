@@ -18,6 +18,8 @@ class ChatFriendItem extends StatefulWidget {
 }
 
 class _ChatFriendItemState extends State<ChatFriendItem> {
+  //Clase que nos permite guardar los datos de un Usuario y luego usarlos en una lista
+  //En este caso será usada para seleccionar el amigo con el que se desea chatear o crear un chat
   bool? isChecked= false;
   @override
   Widget build(BuildContext context) {

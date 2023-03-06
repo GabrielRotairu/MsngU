@@ -30,7 +30,7 @@ class _ChatView extends State<ChatView> {
     super.initState();
     descargarTextos();
   }
-
+// Metodo donde podemos descargar los mensajes asociados al chat
   void descargarTextos() async {
     final String path = DataHolder().sCOLLETCTIONS_CHATS_NAME +
         "/" +
@@ -53,7 +53,7 @@ class _ChatView extends State<ChatView> {
       onError: (error) => print("listen falied $error"),
     );
   }
-
+//Método que ira con el botón de enviar mensaje:
   void SendBtnPressed(String txt) async {
     String sUrl = "";
     if (bImageLoaded) {
@@ -92,6 +92,7 @@ class _ChatView extends State<ChatView> {
   }
 
   void ItemShortClick(int index) {}
+//Método que nos va a permitir ver nuestra galeria para enviar una foto
 
   void selectImage() async {
     final XFile? pickedFile =
@@ -125,6 +126,7 @@ class _ChatView extends State<ChatView> {
                 padding: EdgeInsets.all(15),
                 itemCount: chatTexts.length,
                 itemBuilder: (BuildContext context, int index) {
+                  //Devolvemos el mensaje a la lista
                   return ChatTextItem(
                     sTexto: chatTexts[index].text!,
                     onShortClick: ItemShortClick,
@@ -137,6 +139,7 @@ class _ChatView extends State<ChatView> {
             ),
             if (bImageLoaded)
               Container(
+                //Enseñamos la foto antes de enviarla
                 height:
                     DataHolder().platformAdmin.getScreenHeight(context) * 0.3,
                 child: Image.file(
@@ -148,10 +151,24 @@ class _ChatView extends State<ChatView> {
               onSend: (txt) => SendBtnPressed(txt),
               actions: [
                 Padding(
+                  //Metemos los diferentes accesos tanto a cámara como a galería.
                   padding: EdgeInsets.only(left: 8, right: 8),
                   child: InkWell(
                     child: Icon(
                       Icons.camera_alt,
+                      color: Colors.blueAccent,
+                      size: DataHolder().platformAdmin.getScreenWidth(context) *
+                          0.065,
+                    ),
+                    onTap: () {
+                      //selectImage();
+                    },
+                  ),
+                ), Padding(
+                  padding: EdgeInsets.only(left: 8, right: 8),
+                  child: InkWell(
+                    child: Icon(
+                      Icons.photo_outlined,
                       color: Colors.blueAccent,
                       size: DataHolder().platformAdmin.getScreenWidth(context) *
                           0.065,

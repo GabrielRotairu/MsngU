@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class RegisterView extends StatelessWidget {
   RegisterView({Key? key}) : super(key: key);
-
+//Método para crear un nuevo usuario en nuestra base de datos:
   void btnRegister(
       String emailAddres, String password, BuildContext context) async {
     try {
@@ -29,6 +29,7 @@ class RegisterView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //Parametros de entrada para la creación del usuario
     C_InputText input1 = C_InputText(
       sTitulo: "Email",
       tLength: 50,
@@ -81,6 +82,7 @@ class RegisterView extends StatelessWidget {
                   ),
                 ),
                 Container(child:  ElevatedButton(
+                  //Hacemos un botón para volver al logIn en caso de tener ya una cuenta existente
                   onPressed: () {
                     Navigator.of(context).popAndPushNamed('/LogIn');
                   },

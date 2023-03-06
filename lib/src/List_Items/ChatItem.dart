@@ -18,6 +18,7 @@ class ChatItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //Clase que nos va a devolver los chats que tenga el usuario y nos permita guardarlos en una lista
     // TODO: implement build
     return Container(
         color: Colors.black12,

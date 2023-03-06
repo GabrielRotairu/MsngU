@@ -28,7 +28,7 @@ class _ChatHomeView extends State<ChatHomeView> {
     actualizarListas();
     getFriends();
   }
-
+//Vamos a descargar los chats que corresponden a nuestro usuario y a enseñarlos en una lista:
   void actualizarListas() async {
     final docRef = db.collection("Chats").
     where("members",arrayContains: DataHolder().usuario.uid).
@@ -43,7 +43,7 @@ print(docRef.toString());
       }
     });
   }
-
+//Vamos a descargar los usuarios que estén en nuestra lista de amigos para chatear con ellos.
   void getFriends() async {
     final ref = db
         .collection(DataHolder().sCOLLETCTIONS_USERS)
@@ -61,7 +61,7 @@ print(docRef.toString());
     });
   }
 
-
+//Método que nos manda al chat que se haya pulsado.
   void ItemShortClick(int index) {
     print("DEBUG:   " + index.toString());
     DataHolder().chat = DataHolder().ChatList[index];
@@ -90,6 +90,7 @@ print(docRef.toString());
           },
         ),
       ),
+      //Este botón nos permitirá ir a la lista de amigos para iniciar un chat nuevo
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.of(context).pushNamed('/Friends');

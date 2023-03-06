@@ -29,7 +29,7 @@ class _UsersHome_View extends State<UsersHome_View> {
     getFriends();
     print("DEBUG------> FRIENDS:" + DataHolder().usuario.friends.toString());
   }
-
+//Método que nos va a permitir descargar los usuarios que tengamos en la lista de amigos y que los meta en una lista
   void getFriends() async {
     Future.delayed(Duration(seconds: 2));
 
@@ -48,6 +48,7 @@ class _UsersHome_View extends State<UsersHome_View> {
       }
     });
   }
+//Método que nos va a permitir descargar los usuarios que tengamos en la lista de peticioness y que los meta en una lista
 
   void getPetitions() async {
     Future.delayed(Duration(seconds: 2));
@@ -67,6 +68,7 @@ class _UsersHome_View extends State<UsersHome_View> {
       }
     });
   }
+//Método que nos va a permitir descargar los usuarios que tengamos en la base de datos y que los meta en una lista
 
   void getUsers() async {
     Future.delayed(Duration(seconds: 2));
@@ -82,7 +84,7 @@ class _UsersHome_View extends State<UsersHome_View> {
       }
     });
   }
-
+//Método que nos va a permitir ver información de un Usuario
   void listItemShortClicked(int index) {
     print("DEBUG: " + index.toString());
     print("DEBUG: " + friendList[index].name!);
@@ -99,6 +101,9 @@ class _UsersHome_View extends State<UsersHome_View> {
           flexibleSpace: TabBar(
             padding: EdgeInsets.all(3),
             indicatorColor: Colors.lightBlueAccent.shade100,
+            //Dividimos la pantalla en 3 partes, Usuarios totales donde podremos ver y solicitar amistad,
+            //la pantalla Peticiones donde vamos a poder ver nuestras peticiones y aceptarlas o rechazarlas
+            //La pantalla amigos para ver nuestros amigos
             tabs: [
               Tab(
                   text: 'Users',
@@ -117,6 +122,7 @@ class _UsersHome_View extends State<UsersHome_View> {
         ),
         body: TabBarView(
           children: [
+            //Pantalla de todos los usuarios de nuestra base de datos
             GridView.builder(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 1,
@@ -134,7 +140,8 @@ class _UsersHome_View extends State<UsersHome_View> {
                   );
                 }),
             GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              //Pantalla de todas las peticiones  de nuestra lista de peticiones
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 1,
                 ),
                 padding: EdgeInsets.all(8),
@@ -150,7 +157,9 @@ class _UsersHome_View extends State<UsersHome_View> {
                   );
                 }),
             ListView.builder(
-                padding: EdgeInsets.all(8),
+              //Pantalla de todos los usuarios que tenemos en nuestra lista de amigos
+
+            padding: EdgeInsets.all(8),
                 itemCount: friendList.length,
                 itemBuilder: (BuildContext context, int index) {
                   return FriendItem(

@@ -43,7 +43,7 @@ List<String> uidChats=[];
     });
 
   }*/
-
+//Este método nos va a permitir saber si el chat con el Usuario seleccionado existe y si no que cree uno
   void iniciarChat() async{
 bool existeChat=false;
     Function unOrdDeepEq = const DeepCollectionEquality.unordered().equals;
@@ -85,7 +85,7 @@ Chat nuevoChat=Chat(
 
 
   }
-
+//En este método vamos a descargarnos las lista de amigos que tiene el usuario
   void getFriends() async {
     FirebaseFirestore db = FirebaseFirestore.instance;
     final ref = db
@@ -112,10 +112,12 @@ Chat nuevoChat=Chat(
         title: Text(""),
       ),
       body: Center(
+        //Hacemos una lista para ver los amigos del usuario
           child: ListView.separated(
         padding: EdgeInsets.all(8),
         itemCount: friendList.length,
         itemBuilder: (BuildContext context, int index) {
+          //Devolvemos los datos del amigo con el que chatearr
           return ChatFriendItem(
             index: index,
             usuario: friendList[index],
@@ -125,6 +127,7 @@ Chat nuevoChat=Chat(
           return const Divider();
         },
       )),
+      //Hacemos un botón para la función del iniciarChat()
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           uidChats=[DataHolder().usuario.uid];

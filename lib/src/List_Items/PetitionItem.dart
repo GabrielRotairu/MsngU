@@ -10,7 +10,8 @@ class PetitionItem extends StatelessWidget {
   final Function(int index) onShortClick;
   final int index;
   final Usuario usuario;
-
+//Este método nos permite añadir el amigo tanto a nuestro usuario como al usuario que nos ha
+  //solicitado ser amigo nuestro a la base de datos
   void btnAcept() async{
     FirebaseFirestore db = FirebaseFirestore.instance;
     await db
@@ -25,7 +26,7 @@ class PetitionItem extends StatelessWidget {
         .onError((e, _) => print("Error on writing document : $e"));
   }
 
-  btnDeny(){}
+  //btnDeny(){}
 
 
   const PetitionItem(
@@ -67,6 +68,8 @@ class PetitionItem extends StatelessWidget {
             alignment: MainAxisAlignment.center,
             children: [
               ElevatedButton(
+                //en el onPressed vamos a comprobar que el id del usuario no esta en nuestra lista de amigos
+                //En caso de que no esté lo añada y en caso de que esté le diga que el usuario ya es amigo nuestro
                   onPressed: () {
                     if(usuario.friends!.contains(DataHolder().usuario.uid)){
                     print("ya sois amigos xd");
@@ -84,12 +87,14 @@ class PetitionItem extends StatelessWidget {
                       backgroundColor: MaterialStatePropertyAll(Colors.green),
                       shape: MaterialStatePropertyAll(StadiumBorder()))),
               ElevatedButton(
+                //Hacemos otro boton para borrar la peticion de nuestra lista en caso de que no queramos que el
+                // usuario esté en nuestra lista de amigos.
                 onPressed: () {
 
                   DataHolder().usuario.petitions!.remove(usuario.uid);
                     usuario.petitions!.remove(DataHolder().usuario.uid);
 
-                  btnDeny();
+                 // btnDeny();
                 },
                 child: Text("Deny"),
                 style: ButtonStyle(
