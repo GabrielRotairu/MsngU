@@ -82,7 +82,7 @@ friendList.clear();
     });
   }
 
-//Método que nos va a permitir descargar los usuarios que tengamos en la base de datos y que los meta en una lista
+//Método que nos va a permitir descargar los usuarios que tengamos en la base de datos y que los meta en una lista.
 
   void getUsers() async {
     Future.delayed(Duration(seconds: 2));
