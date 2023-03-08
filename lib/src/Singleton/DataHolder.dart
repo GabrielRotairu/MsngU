@@ -14,7 +14,7 @@ class DataHolder {
   String sCOLLETCTIONS_USERS = "Usuarios";
   String sCOLLETCTIONS_CHAT_TEXTS_NAME = "Texts";
   late Platform_Admin platformAdmin;
-
+  Function usuarioListener=(Usuario usuario){print("");};
 
   DataHolder._internal() {
     //sMensaje="Lorem Ipsum ";
@@ -24,14 +24,26 @@ class DataHolder {
   factory DataHolder() {
     return _dataHolder;
   }
+
+
+  void setUsuarioDatosListener(void perfilActualizado(Usuario usuario)){
+    usuarioListener=perfilActualizado;
+  }
 //Descargamos nuestro perfil actual
   Future<void> DescargarMiPerfil() async {
-    usuario = FB_Admin().DescargarPerfil(FirebaseAuth.instance.currentUser?.uid)
-        as Usuario;
+
+    await FB_Admin().DescargarPerfil(FirebaseAuth.instance.currentUser?.uid,(event) {
+      usuario=event.data()!;
+      print("USUSARIO LISTENER:"+usuario.toString());
+      usuarioListener(usuario);
+      //
+    },);
   }
 //Descargamos los perfiles restantes
   Future<void> DescargarPerfil(String? idPerfil) async {
-    await FB_Admin().DescargarPerfil(idPerfil) as Usuario;
+    await FB_Admin().DescargarPerfil(idPerfil,(event) {
+
+    },) as Usuario;
   }
 //Comprobamos que nuestro perfil está descargado
   bool isMiPerfilDownloaded() {

@@ -23,7 +23,7 @@ class _SplashView extends State<SplashView> {
 //Este método nos va a permitir guardar el estado de la cuenta para no tener que iniciar sesión cada vez que entremos
 // a la app
   void loadAllData() async {
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(Duration(seconds: 3));
     //CARGAMOS TODOS LOS RECURSOS
 
     if (FirebaseAuth.instance.currentUser == null) {
@@ -31,20 +31,29 @@ class _SplashView extends State<SplashView> {
         Navigator.of(context).popAndPushNamed("/LogIn");
       });
     } else {
-      bool existe = await checkExistingProfile();
-      if (existe) {
-        setState(() {
-          Navigator.of(context).popAndPushNamed("/Home");
-        });
-      } else {
-        setState(() {
-          Navigator.of(context).popAndPushNamed("/Register");
-        });
-      }
+      //bool existe = await checkExistingProfile();
+
+      DataHolder().setUsuarioDatosListener((usuario) {
+        bool existe=usuario.uid.isNotEmpty;
+        if (existe) {
+          setState(() {
+            Navigator.of(context).popAndPushNamed("/Home");
+          });
+        } else {
+          setState(() {
+            Navigator.of(context).popAndPushNamed("/Register");
+          });
+        }
+      });
+
+      await DataHolder().DescargarMiPerfil();
+
+
     }
   }
 
-  Future<bool> checkExistingProfile() async {
+  //Future<bool> checkExistingProfile() async {
+  /*
     String? idUser = FirebaseAuth.instance.currentUser?.uid;
     print (idUser.toString());
     FirebaseFirestore db = FirebaseFirestore.instance;
@@ -55,16 +64,20 @@ class _SplashView extends State<SplashView> {
     DocumentSnapshot docsnap = await docRef.get();
     DataHolder().usuario = docsnap.data() as Usuario;
 
-    return docsnap.exists;
-  }
+    return docsnap.exists;*/
+
+
+
+  //}
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.lightBlue,
       body: Center(
-        child: LoadingAnimationWidget.hexagonDots(
-          color: Colors.lightBlueAccent,
-          size: 70,
+        child: LoadingAnimationWidget.flickr(
+          rightDotColor:Colors.black12 ,
+          size: 70, leftDotColor: Colors.white,
         ),
       ),
     );

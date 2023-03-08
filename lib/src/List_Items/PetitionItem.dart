@@ -26,7 +26,7 @@ class PetitionItem extends StatelessWidget {
         .onError((e, _) => print("Error on writing document : $e"));
   }
 
-  //btnDeny(){}
+  btnDeny(){}
 
 
   const PetitionItem(
@@ -43,6 +43,7 @@ class PetitionItem extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Card(
+
       clipBehavior: Clip.antiAlias,
       child: Column(
         children: [
@@ -94,7 +95,7 @@ class PetitionItem extends StatelessWidget {
                   DataHolder().usuario.petitions!.remove(usuario.uid);
                     usuario.petitions!.remove(DataHolder().usuario.uid);
 
-                 // btnDeny();
+                  btnDeny();
                 },
                 child: Text("Deny"),
                 style: ButtonStyle(

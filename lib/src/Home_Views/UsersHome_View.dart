@@ -1,3 +1,4 @@
+import 'package:betamsngu/src/Custom_Objects/C_InputText.dart';
 import 'package:betamsngu/src/Firebase_Objects/Usuario.dart';
 import 'package:betamsngu/src/List_Items/PetitionItem.dart';
 import 'package:betamsngu/src/List_Items/UserItem.dart';
@@ -28,7 +29,18 @@ class _UsersHome_View extends State<UsersHome_View> {
     getUsers();
     getFriends();
     print("DEBUG------> FRIENDS:" + DataHolder().usuario.friends.toString());
+    DataHolder().setUsuarioDatosListener((usuario) {
+
+      setState(() {
+        getPetitions();
+        getUsers();
+        getFriends();
+      });
+
+
+    });
   }
+
 //Método que nos va a permitir descargar los usuarios que tengamos en la lista de amigos y que los meta en una lista
   void getFriends() async {
     Future.delayed(Duration(seconds: 2));
@@ -41,13 +53,14 @@ class _UsersHome_View extends State<UsersHome_View> {
           toFirestore: (Usuario u, _) => u.toFirestore(),
         );
     final docSnap = await ref.get();
-
+friendList.clear();
     setState(() {
       for (int i = 0; i < docSnap.docs.length; i++) {
         friendList.add(docSnap.docs[i].data());
       }
     });
   }
+
 //Método que nos va a permitir descargar los usuarios que tengamos en la lista de peticioness y que los meta en una lista
 
   void getPetitions() async {
@@ -61,13 +74,14 @@ class _UsersHome_View extends State<UsersHome_View> {
           toFirestore: (Usuario u, _) => u.toFirestore(),
         );
     final docSnap = await ref.get();
-
+    petitionsList.clear();
     setState(() {
       for (int i = 0; i < docSnap.docs.length; i++) {
         petitionsList.add(docSnap.docs[i].data());
       }
     });
   }
+
 //Método que nos va a permitir descargar los usuarios que tengamos en la base de datos y que los meta en una lista
 
   void getUsers() async {
@@ -77,13 +91,14 @@ class _UsersHome_View extends State<UsersHome_View> {
           toFirestore: (Usuario u, _) => u.toFirestore(),
         );
     final docSnap = await ref.get();
-
+userList.clear();
     setState(() {
       for (int i = 0; i < docSnap.docs.length; i++) {
         userList.add(docSnap.docs[i].data());
       }
     });
   }
+
 //Método que nos va a permitir ver información de un Usuario
   void listItemShortClicked(int index) {
     print("DEBUG: " + index.toString());
@@ -97,8 +112,10 @@ class _UsersHome_View extends State<UsersHome_View> {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
+
         appBar: AppBar(
           flexibleSpace: TabBar(
+
             padding: EdgeInsets.all(3),
             indicatorColor: Colors.lightBlueAccent.shade100,
             //Dividimos la pantalla en 3 partes, Usuarios totales donde podremos ver y solicitar amistad,
@@ -121,6 +138,7 @@ class _UsersHome_View extends State<UsersHome_View> {
           ),
         ),
         body: TabBarView(
+
           children: [
             //Pantalla de todos los usuarios de nuestra base de datos
             GridView.builder(
@@ -140,8 +158,8 @@ class _UsersHome_View extends State<UsersHome_View> {
                   );
                 }),
             GridView.builder(
-              //Pantalla de todas las peticiones  de nuestra lista de peticiones
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                //Pantalla de todas las peticiones  de nuestra lista de peticiones
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 1,
                 ),
                 padding: EdgeInsets.all(8),
@@ -157,9 +175,9 @@ class _UsersHome_View extends State<UsersHome_View> {
                   );
                 }),
             ListView.builder(
-              //Pantalla de todos los usuarios que tenemos en nuestra lista de amigos
+                //Pantalla de todos los usuarios que tenemos en nuestra lista de amigos
 
-            padding: EdgeInsets.all(8),
+                padding: EdgeInsets.all(8),
                 itemCount: friendList.length,
                 itemBuilder: (BuildContext context, int index) {
                   return FriendItem(
@@ -170,7 +188,8 @@ class _UsersHome_View extends State<UsersHome_View> {
                 }),
           ],
         ),
-      ),
+        ),
+
     );
   }
 }

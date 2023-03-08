@@ -36,10 +36,12 @@ class _MsngU_View extends State<MsngU_View> {
     //Un último botón para enviar mensajes de voz
     // TODO: implement build
     return Scaffold(
+
         body: Center(
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text("HOLAAAAA")
+        Text("MSGN U (Coming soon)")
       ],
     )));
   }

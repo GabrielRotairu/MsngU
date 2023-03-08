@@ -1,4 +1,5 @@
 import 'package:betamsngu/src/Custom_Objects//C_InputText.dart';
+import 'package:betamsngu/src/Singleton/DataHolder.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 //Parámetros de entrada para la comprobación del correo
@@ -19,7 +20,14 @@ void btnlog(BuildContext context) async {
       email: input1.getText(),
       password: input2.getText(),
     );
-    Navigator.of(context).popAndPushNamed("/Home");
+
+    DataHolder().setUsuarioDatosListener((usuario) {
+      if(usuario.uid.isNotEmpty)
+        Navigator.of(context).popAndPushNamed("/Home");
+    });
+
+    await DataHolder().DescargarMiPerfil();
+
   } on FirebaseAuthException catch (e) {
     print("------->>>>   ERROR DE CREACION DE USUARIO " + e.code);
     if (e.code == 'weak-password') {
@@ -30,6 +38,7 @@ void btnlog(BuildContext context) async {
   } catch (e) {
     print(e);
   }
+
   print("USUARIO LOGEADO CORRECTAMENTE");
 }
 

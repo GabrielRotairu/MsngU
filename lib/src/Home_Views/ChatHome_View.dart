@@ -38,6 +38,7 @@ class _ChatHomeView extends State<ChatHomeView> {
     final docSnap = await docRef.get();
 print(docRef.toString());
     setState(() {
+      DataHolder().ChatList.clear();
       for (int i = 0; i < docSnap.docs.length; i++) {
         DataHolder().ChatList.add(docSnap.docs[i].data());
       }
@@ -71,7 +72,6 @@ print(docRef.toString());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-    //  backgroundColor: Colors.lightBlueAccent.shade400,
       body: Center(
         child: ListView.separated(
           padding: const EdgeInsets.all(8),

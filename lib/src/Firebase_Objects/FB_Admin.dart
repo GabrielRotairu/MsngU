@@ -6,7 +6,7 @@ class FB_Admin {
 
   }
 //Método para descargar nuestro usuario para futuras funciones con él
-  Future<Usuario?> DescargarPerfil(String ? idUser) async {
+  Future<void> DescargarPerfil(String ? idUser,void onData(DocumentSnapshot<Usuario> event)?) async {
     print ("ID: "+idUser.toString());
     FirebaseFirestore db= FirebaseFirestore.instance;
     final docRef = db
@@ -17,9 +17,14 @@ class FB_Admin {
       toFirestore: (Usuario usuario, _) => usuario.toFirestore(),
     );
 
-    final docSnap = await docRef.get();
-    print(docSnap.id);
-    return docSnap.data();
+    docRef.snapshots().listen(
+      onData,
+      onError: (error) => print("Listen failed: $error"),
+    );
+
+    //final docSnap = await docRef.get();
+    //print(docSnap.id);
+    //return docSnap.data();
   }
 
 }
