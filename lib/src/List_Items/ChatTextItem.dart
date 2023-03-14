@@ -19,10 +19,8 @@ class ChatTextItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //Clase en la que se van a descargar los mensajes de un chat (tanto del usuario con el que se está chateando
+    //Clase en la que se van a descargar los mensajes y archivos  de un chat (tanto del usuario con el que se está chateando
     //como del usuario que esté loggeado).
-    // TODO: implement build
-    //print(""+imgUrl);
     if(imgUrl!=null && imgUrl!.isNotEmpty){
       return   BubbleNormalImage(
         id: 'id001',

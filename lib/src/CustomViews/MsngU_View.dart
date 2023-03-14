@@ -41,42 +41,40 @@ class _MsngU_View extends State<MsngU_View> {
     //Otro botón para acceder a nuestra galería y enviar una foto desde ahí
     //Un último botón para enviar mensajes de voz
     // TODO: implement build
-    return Scaffold(
-        body: Center(
-      child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-        CustomSlidingSegmentedControl<int>(
-          initialValue: 2,
-          children: {
-            1: Icon(Icons.keyboard_voice),
-            2: Icon(Icons.camera_alt_rounded),
-            3: Icon(Icons.textsms_rounded),
-          },
-          decoration: BoxDecoration(
-            color: Colors.grey.shade300,
-            borderRadius: BorderRadius.circular(8),
-          ),
-          thumbDecoration: BoxDecoration(
-            color: Colors.lightBlueAccent.shade700,
-            borderRadius: BorderRadius.circular(6),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(.3),
-                blurRadius: 4.0,
-                spreadRadius: 1.0,
-                offset: Offset(
-                  0.0,
-                  2.0,
-                ),
-              ),
+   return  DefaultTabController(
+      length: 3,
+      child: Scaffold(
+
+        appBar: AppBar(
+          flexibleSpace: TabBar(
+
+            padding: EdgeInsets.all(3),
+            indicatorColor: Colors.lightBlueAccent.shade100,
+            //Dividimos la pantalla en 3 partes, Usuarios totales donde podremos ver y solicitar amistad,
+            //la pantalla Peticiones donde vamos a poder ver nuestras peticiones y aceptarlas o rechazarlas
+            //La pantalla amigos para ver nuestros amigos
+            tabs: [
+              Tab(
+
+                  icon: Icon(Icons.camera_alt_rounded),
+                  iconMargin: EdgeInsets.symmetric(horizontal: 1, vertical: 1)),
+              Tab(
+                  icon: Icon(Icons.message_rounded),
+                  iconMargin: EdgeInsets.symmetric(horizontal: 1, vertical: 1)),
+              Tab(
+                  icon: Icon(Icons.keyboard_voice_rounded),
+                  iconMargin: EdgeInsets.symmetric(horizontal: 1, vertical: 1)),
             ],
           ),
-          duration: Duration(milliseconds: 300),
-          curve: Curves.easeInToLinear,
-          onValueChanged: (v) {
-            print(v);
-          },
         ),
-      ]),
-    ));
+        body: TabBarView(
+
+          children: [
+
+          ],
+        ),
+      ),
+
+    );
   }
 }

@@ -30,6 +30,7 @@ class _ChatView extends State<ChatView> {
     super.initState();
     descargarTextos();
   }
+
 // Metodo donde podemos descargar los mensajes asociados al chat
   void descargarTextos() async {
     final String path = DataHolder().sCOLLETCTIONS_CHATS_NAME +
@@ -53,13 +54,15 @@ class _ChatView extends State<ChatView> {
       onError: (error) => print("listen falied $error"),
     );
   }
+
 //Método que ira con el botón de enviar mensaje:
   void SendBtnPressed(String txt) async {
     String sUrl = "";
     if (bImageLoaded) {
       final storageRef =
           FirebaseStorage.instance.ref(); //Apunta a la / del storage
-      final imagen1ImagesRef = storageRef.child("fotos/${  DataHolder().chat.uid}/img${Timestamp.now()}.png");
+      final imagen1ImagesRef = storageRef
+          .child("fotos/${DataHolder().chat.uid}/img${Timestamp.now()}.png");
 
       try {
         await imagen1ImagesRef.putFile(imageFile);
@@ -73,8 +76,7 @@ class _ChatView extends State<ChatView> {
         print("HUBO UN ERROR EN EL ENVIO DE LA IMAGEN: $e");
       }
     }
-    String path =
-        DataHolder().sCOLLETCTIONS_CHATS_NAME +
+    String path = DataHolder().sCOLLETCTIONS_CHATS_NAME +
         "/" +
         DataHolder().chat.uid +
         "/" +
@@ -92,6 +94,7 @@ class _ChatView extends State<ChatView> {
   }
 
   void ItemShortClick(int index) {}
+
 //Método que nos va a permitir ver nuestra galeria para enviar una foto
 
   void takePhoto() async {
@@ -107,9 +110,9 @@ class _ChatView extends State<ChatView> {
     }
   }
 
-  void selectImage()async {
+  void selectImage() async {
     final XFile? pickedFile =
-    await _picker.pickImage(source: ImageSource.gallery);
+        await _picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
       setState(() {
         imageFile = File(pickedFile.path);
@@ -117,8 +120,6 @@ class _ChatView extends State<ChatView> {
         dListHeightPercentage = 0.5;
       });
     }
-
-
   }
 
   @override
@@ -160,6 +161,7 @@ class _ChatView extends State<ChatView> {
                   imageFile,
                   fit: BoxFit.fitHeight,
                 ),
+                color: Colors.lightBlue,
               ),
             MessageBar(
               onSend: (txt) => SendBtnPressed(txt),
@@ -170,7 +172,7 @@ class _ChatView extends State<ChatView> {
                   child: InkWell(
                     child: Icon(
                       Icons.camera_alt,
-                      color: Colors.blueAccent,
+                      color: Colors.lightBlueAccent,
                       size: DataHolder().platformAdmin.getScreenWidth(context) *
                           0.065,
                     ),
@@ -178,12 +180,13 @@ class _ChatView extends State<ChatView> {
                       takePhoto();
                     },
                   ),
-                ), Padding(
+                ),
+                Padding(
                   padding: EdgeInsets.only(left: 8, right: 8),
                   child: InkWell(
                     child: Icon(
                       Icons.photo_outlined,
-                      color: Colors.blueAccent,
+                      color: Colors.lightBlueAccent,
                       size: DataHolder().platformAdmin.getScreenWidth(context) *
                           0.065,
                     ),
