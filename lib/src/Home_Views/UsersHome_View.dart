@@ -28,9 +28,9 @@ class _UsersHome_View extends State<UsersHome_View> {
     getPetitions();
     getUsers();
     getFriends();
+
     print("DEBUG------> FRIENDS:" + DataHolder().usuario.friends.toString());
     DataHolder().setUsuarioDatosListener((usuario) {
-
       setState(() {
         getPetitions();
         getUsers();
@@ -40,6 +40,8 @@ class _UsersHome_View extends State<UsersHome_View> {
 
     });
   }
+
+
 
 //Método que nos va a permitir descargar los usuarios que tengamos en la lista de amigos y que los meta en una lista
   void getFriends() async {

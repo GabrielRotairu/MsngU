@@ -90,7 +90,7 @@ class _HomeView extends State<HomeView> {
           ),
           //Este apartado nos va a llevar a la función especial de nuestra app
           NavigationDestination(
-            selectedIcon: Icon(Icons.add_circle),
+            selectedIcon:Icon(Icons.add_circle),
             icon: Icon(Icons.add_circle_outline),
             label: 'MSNG U',
           ),

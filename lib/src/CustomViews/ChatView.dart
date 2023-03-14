@@ -59,7 +59,7 @@ class _ChatView extends State<ChatView> {
     if (bImageLoaded) {
       final storageRef =
           FirebaseStorage.instance.ref(); //Apunta a la / del storage
-      final imagen1ImagesRef = storageRef.child("imagenes/user.png");
+      final imagen1ImagesRef = storageRef.child("fotos/${  DataHolder().chat.uid}/img${Timestamp.now()}.png");
 
       try {
         await imagen1ImagesRef.putFile(imageFile);
@@ -94,9 +94,9 @@ class _ChatView extends State<ChatView> {
   void ItemShortClick(int index) {}
 //Método que nos va a permitir ver nuestra galeria para enviar una foto
 
-  void selectImage() async {
+  void takePhoto() async {
     final XFile? pickedFile =
-        await _picker.pickImage(source: ImageSource.gallery);
+        await _picker.pickImage(source: ImageSource.camera);
     //final XFile? pickedFile = await _picker.pickImage(source: ImageSource.camera);
     if (pickedFile != null) {
       setState(() {
@@ -105,6 +105,20 @@ class _ChatView extends State<ChatView> {
         dListHeightPercentage = 0.5;
       });
     }
+  }
+
+  void selectImage()async {
+    final XFile? pickedFile =
+    await _picker.pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      setState(() {
+        imageFile = File(pickedFile.path);
+        bImageLoaded = true;
+        dListHeightPercentage = 0.5;
+      });
+    }
+
+
   }
 
   @override
@@ -161,7 +175,7 @@ class _ChatView extends State<ChatView> {
                           0.065,
                     ),
                     onTap: () {
-                      //selectImage();
+                      takePhoto();
                     },
                   ),
                 ), Padding(

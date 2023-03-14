@@ -1,4 +1,5 @@
 import 'package:chat_bubbles/bubbles/bubble_normal.dart';
+import 'package:chat_bubbles/bubbles/bubble_normal_image.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -23,7 +24,12 @@ class ChatTextItem extends StatelessWidget {
     // TODO: implement build
     //print(""+imgUrl);
     if(imgUrl!=null && imgUrl!.isNotEmpty){
-      return Image.network(imgUrl!);}
+      return   BubbleNormalImage(
+        id: 'id001',
+        image: Image.network(imgUrl!),
+        color: Colors.lightBlueAccent,
+        tail: true,
+      );}
     if(sAuthor==FirebaseAuth.instance.currentUser?.uid) {
       return BubbleNormal(
         text: sTexto,
