@@ -2,6 +2,8 @@ import 'package:betamsngu/src/Firebase_Objects/Usuario.dart';
 import 'package:betamsngu/src/Singleton/DataHolder.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fluttermoji/fluttermojiCircleAvatar.dart';
 
 class PetitionItem extends StatelessWidget {
   final String sName;
@@ -47,10 +49,8 @@ class PetitionItem extends StatelessWidget {
       clipBehavior: Clip.antiAlias,
       child: Column(
         children: [
-          CircleAvatar(
-            backgroundImage: AssetImage('assets/user.png'),
-            radius: 80,
-          ),
+        FluttermojiCircleAvatar(),
+
           ListTile(
             title: Text(
               sName + ", " + iAge.toString(),

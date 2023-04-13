@@ -1,5 +1,6 @@
 import 'package:betamsngu/src/CustomViews//ChatView.dart';
 import 'package:betamsngu/src/CustomViews/ChatFriends.dart';
+import 'package:betamsngu/src/CustomViews/ProfileAvatar.dart';
 import 'package:betamsngu/src/Home_Views/ChatHome_View.dart';
 import 'package:betamsngu/src/Home_Views/HomeView.dart';
 import 'package:betamsngu/src/Home_Views/UsersHome_View.dart';
@@ -29,6 +30,7 @@ class App extends StatelessWidget {
         '/Chats': (context)=> ChatView(),
         '/UsersHome': (context)=> UsersHome_View(),
         '/Friends': (context)=> ChatFriends(),
+        '/Avatar': (context)=> ProfileAvatar(),
 
 
       },

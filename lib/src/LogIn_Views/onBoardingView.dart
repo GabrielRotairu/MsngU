@@ -1,12 +1,27 @@
+import 'dart:io';
+
 import 'package:betamsngu/src/Custom_Objects//C_InputText.dart';
 import 'package:betamsngu/src/Firebase_Objects/Usuario.dart';
+import 'package:betamsngu/src/Singleton/DataHolder.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
-class onBoardingView extends StatelessWidget {
-  onBoardingView({Key? key}) : super(key: key);
+class onBoardingView extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return _onBoardingView();
+  }
+}
+
+class _onBoardingView extends State<onBoardingView> {
   FirebaseFirestore db = FirebaseFirestore.instance;
+  final ImagePicker _picker = ImagePicker();
+  late File imageFile;
+  bool bImageLoaded = false;
 
   //Parametros de entrada para introducirle datos al usuario y subirlos a la base de datos
   C_InputText input1 = C_InputText(
@@ -26,6 +41,7 @@ class onBoardingView extends StatelessWidget {
     sTitulo: "Description",
     tLength: 50,
   );
+
 //Método para subir los datos del usuario a la base de datos
   void btnAceptar(context) async {
     Usuario usuario = new Usuario(
@@ -42,16 +58,14 @@ class onBoardingView extends StatelessWidget {
         .onError((e, _) => print("Error on writing document : $e"));
     Navigator.of(context).popAndPushNamed('/Home');
   }
-//Método para subir la imagen que será usada como el avatar del usuario
-  void subirImg() async {
-    print("fotito");
-  }
+
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:  Text('User Data'),
+        title: Text('User Data'),
         backgroundColor: Colors.lightBlueAccent.shade700,
       ),
       body: SingleChildScrollView(
@@ -60,14 +74,7 @@ class onBoardingView extends StatelessWidget {
           children: [
             Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10)),
-            InkWell(
-                child: IconButton(
-              onPressed: () {
-                subirImg();
-              },
-              icon: Icon(Icons.account_circle),
-              iconSize: 90,
-            )),
+
             Container(
               margin: EdgeInsets.all(20),
               child: input4,

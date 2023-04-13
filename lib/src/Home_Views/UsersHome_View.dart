@@ -1,4 +1,5 @@
 import 'package:betamsngu/src/Custom_Objects/C_InputText.dart';
+import 'package:betamsngu/src/Firebase_Objects/Firebase_Services/Notifications.dart';
 import 'package:betamsngu/src/Firebase_Objects/Usuario.dart';
 import 'package:betamsngu/src/List_Items/PetitionItem.dart';
 import 'package:betamsngu/src/List_Items/UserItem.dart';
@@ -36,12 +37,8 @@ class _UsersHome_View extends State<UsersHome_View> {
         getUsers();
         getFriends();
       });
-
-
     });
   }
-
-
 
 //Método que nos va a permitir descargar los usuarios que tengamos en la lista de amigos y que los meta en una lista
   void getFriends() async {
@@ -55,12 +52,31 @@ class _UsersHome_View extends State<UsersHome_View> {
           toFirestore: (Usuario u, _) => u.toFirestore(),
         );
     final docSnap = await ref.get();
-friendList.clear();
+    friendList.clear();
     setState(() {
       for (int i = 0; i < docSnap.docs.length; i++) {
         friendList.add(docSnap.docs[i].data());
       }
     });
+  }
+
+//Método que nos va a permitir buscar a los amigos que tengamos añadidos
+  Future<List<Usuario>> searchUsers(String query) async {
+    FirebaseFirestore db = FirebaseFirestore.instance;
+    final usersSnapshot = await db
+        .collection(DataHolder().sCOLLETCTIONS_USERS)
+        .where('name', isGreaterThanOrEqualTo: query)
+        .where('name', isLessThan: query + 'z')
+        .get();
+
+    return usersSnapshot.docs
+        .map(
+          (doc) => Usuario(
+            uid: doc.id,
+            name: doc['name'],
+          ),
+        )
+        .toList();
   }
 
 //Método que nos va a permitir descargar los usuarios que tengamos en la lista de peticioness y que los meta en una lista
@@ -93,7 +109,7 @@ friendList.clear();
           toFirestore: (Usuario u, _) => u.toFirestore(),
         );
     final docSnap = await ref.get();
-userList.clear();
+    userList.clear();
     setState(() {
       for (int i = 0; i < docSnap.docs.length; i++) {
         userList.add(docSnap.docs[i].data());
@@ -114,10 +130,8 @@ userList.clear();
     return DefaultTabController(
       length: 3,
       child: Scaffold(
-
         appBar: AppBar(
           flexibleSpace: TabBar(
-
             padding: EdgeInsets.all(3),
             indicatorColor: Colors.lightBlueAccent.shade100,
             //Dividimos la pantalla en 3 partes, Usuarios totales donde podremos ver y solicitar amistad,
@@ -140,7 +154,6 @@ userList.clear();
           ),
         ),
         body: TabBarView(
-
           children: [
             //Pantalla de todos los usuarios de nuestra base de datos
             GridView.builder(
@@ -190,8 +203,14 @@ userList.clear();
                 }),
           ],
         ),
-        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed:
+              // Navigator.of(context).popAndPushNamed('/usersSearch');
 
+              createPetitionNotification,
+          child: Icon(Icons.search_rounded),
+        ),
+      ),
     );
   }
 }

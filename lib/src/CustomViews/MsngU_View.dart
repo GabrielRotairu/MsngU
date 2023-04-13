@@ -2,7 +2,7 @@ import 'package:betamsngu/src/Firebase_Objects/Usuario.dart';
 import 'package:betamsngu/src/Singleton/DataHolder.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:custom_sliding_segmented_control/custom_sliding_segmented_control.dart';
+import 'package:flutter_sound/public/tau.dart';
 
 class MsngU_View extends StatefulWidget {
   @override
@@ -15,6 +15,7 @@ class MsngU_View extends StatefulWidget {
 class _MsngU_View extends State<MsngU_View> {
   List<Usuario> Friends = [];
   FirebaseFirestore db = FirebaseFirestore.instance;
+
 
 //En este método vamos a descargar nuestros amigos a los que les mandaremos un mensaje especial
   void getUsers() async {
@@ -33,7 +34,9 @@ class _MsngU_View extends State<MsngU_View> {
       }
     });
   }
+  void startRecording() async {
 
+  }
   @override
   Widget build(BuildContext context) {
     //Vamos a hacer un input text para mandar un mensaje especial
@@ -70,6 +73,13 @@ class _MsngU_View extends State<MsngU_View> {
         body: TabBarView(
 
           children: [
+            Container(
+            child: ElevatedButton(onPressed: () {  },child: Text(""),)
+            ),
+            Container(),
+            Container(
+
+    )
 
           ],
         ),

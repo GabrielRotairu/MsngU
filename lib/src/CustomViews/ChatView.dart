@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:betamsngu/main.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:betamsngu/src/Firebase_Objects/ChatText.dart';
 import 'package:betamsngu/src/List_Items/ChatTextItem.dart';
@@ -91,6 +92,8 @@ class _ChatView extends State<ChatView> {
         imgUrl: sUrl);
 
     await docRef.add(nuevoMensaje.toFirestore());
+
+
   }
 
   void ItemShortClick(int index) {}

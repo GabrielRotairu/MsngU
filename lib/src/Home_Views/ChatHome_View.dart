@@ -16,7 +16,7 @@ class ChatHomeView extends StatefulWidget {
 
 class _ChatHomeView extends State<ChatHomeView> {
   FirebaseFirestore db = FirebaseFirestore.instance;
-
+String lastMessage="";
   List<ChatText> chatTexts = [];
   C_InputText inputMsg = C_InputText();
   List<Usuario> friendList = [];
@@ -61,7 +61,26 @@ print(docRef.toString());
       }
     });
   }
+void getLastMessage() async{
 
+  final String path = DataHolder().sCOLLETCTIONS_CHATS_NAME +
+      "/" +
+      DataHolder().chat.uid +
+      "/" +
+      DataHolder().sCOLLETCTIONS_CHAT_TEXTS_NAME;
+  final docRef = db.collection(path).orderBy('time').withConverter(
+      fromFirestore: ChatText.fromFirestore,
+      toFirestore: (ChatText text, _) => text.toFirestore());
+  final docSnap = await docRef.snapshots().listen(
+        (event) {
+      setState(() {
+      //lastMessage=docSnap.data();
+      });
+    },
+    onError: (error) => print("listen falied $error"),
+  );
+
+}
 //Método que nos manda al chat que se haya pulsado.
   void ItemShortClick(int index) {
     print("DEBUG:   " + index.toString());

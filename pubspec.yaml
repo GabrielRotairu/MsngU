@@ -22,14 +22,16 @@ dependencies:
   firebase_storage: ^11.0.4
   firebase_messaging: ^14.1.2
   collection: ^1.16.0
-  animated_bottom_navigation_bar: ^1.1.0+1
-  custom_sliding_segmented_control: ^1.7.4
+  awesome_notifications: ^0.6.19
+  flutter_snake_navigationbar: ^0.6.1
+  fluttermoji: ^1.0.0
+
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  flutter_launcher_icons: ^0.11.0
+  flutter_launcher_icons: ^0.12.0
 
 flutter_icons:
   android: "launcher_icon"
