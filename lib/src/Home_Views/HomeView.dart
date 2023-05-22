@@ -6,7 +6,6 @@ import 'package:betamsngu/src/Home_Views/UsersHome_View.dart';
 import 'package:betamsngu/src/Singleton/DataHolder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_snake_navigationbar/flutter_snake_navigationbar.dart';
-import 'package:fluttermoji/fluttermojiCircleAvatar.dart';
 
 class HomeView extends StatefulWidget {
   @override
@@ -67,7 +66,7 @@ class _HomeView extends State<HomeView> {
         child: ListView(
           padding: EdgeInsets.all(20),
           children: [
-            FluttermojiCircleAvatar(),
+            CircleAvatar(foregroundColor: Colors.lightBlueAccent),
             ListTile(
               title: Text(DataHolder().usuario.name.toString()),
             ),
@@ -79,7 +78,6 @@ class _HomeView extends State<HomeView> {
               title: Text('Editar Perfil'),
               onTap: () {
                  Navigator.of(context).pushNamed('/Avatar');
-                createPetitionNotification();
               },
             ),
             ListTile(

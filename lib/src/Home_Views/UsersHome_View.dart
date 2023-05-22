@@ -204,10 +204,10 @@ class _UsersHome_View extends State<UsersHome_View> {
           ],
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed:
-              // Navigator.of(context).popAndPushNamed('/usersSearch');
+          onPressed:(){
+            Text("hola mundo");
+          },
 
-              createPetitionNotification,
           child: Icon(Icons.search_rounded),
         ),
       ),

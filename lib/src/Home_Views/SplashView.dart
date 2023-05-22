@@ -2,6 +2,7 @@ import 'package:betamsngu/src/Firebase_Objects/Usuario.dart';
 import 'package:betamsngu/src/Singleton/DataHolder.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
@@ -36,8 +37,20 @@ class _SplashView extends State<SplashView> {
       DataHolder().setUsuarioDatosListener((usuario) {
         bool existe=usuario.uid.isNotEmpty;
         if (existe) {
-          setState(() {
+          setState(() async{
             Navigator.of(context).popAndPushNamed("/Home");
+            final fcmToken = await FirebaseMessaging.instance.getToken();
+            print(fcmToken);
+            FirebaseMessaging.instance.onTokenRefresh
+                .listen((fcmToken) {
+              // TODO: If necessary send token to application server.
+
+              // Note: This callback is fired at each app startup and whenever a new
+              // token is generated.
+            })
+                .onError((err) {
+              // Error getting token.
+            });
           });
         } else {
           setState(() {

@@ -4,7 +4,6 @@ import 'package:betamsngu/src/Firebase_Objects/Usuario.dart';
 import 'package:betamsngu/src/Singleton/DataHolder.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttermoji/fluttermojiCircleAvatar.dart';
 
 class UserItem extends StatelessWidget {
   final String sName;
@@ -44,7 +43,7 @@ class UserItem extends StatelessWidget {
       clipBehavior: Clip.antiAlias,
       child: Column(
         children: [
-          FluttermojiCircleAvatar(),
+          CircleAvatar(foregroundColor: Colors.lightBlueAccent),
           Padding(
             padding: const EdgeInsets.all(1),
             child: Text(""),

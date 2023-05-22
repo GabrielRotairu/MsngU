@@ -24,8 +24,7 @@ dependencies:
   collection: ^1.16.0
   awesome_notifications: ^0.6.19
   flutter_snake_navigationbar: ^0.6.1
-  fluttermoji: ^1.0.0
-
+  flutter_sound: ^9.2.13
 
 dev_dependencies:
   flutter_test:

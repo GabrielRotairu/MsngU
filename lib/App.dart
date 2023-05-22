@@ -30,7 +30,6 @@ class App extends StatelessWidget {
         '/Chats': (context)=> ChatView(),
         '/UsersHome': (context)=> UsersHome_View(),
         '/Friends': (context)=> ChatFriends(),
-        '/Avatar': (context)=> ProfileAvatar(),
 
 
       },
